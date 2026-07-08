@@ -1,0 +1,215 @@
+.hero {
+
+    min-height: calc(100vh - 90px);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:70px 80px;
+
+    background:#bfacd2;
+
+    gap:50px;
+
+}
+
+
+/* Left Content */
+
+.content {
+
+    max-width:600px;
+
+}
+
+
+.smallTitle {
+
+    color:#6B2D8B;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    letter-spacing:2px;
+
+    margin-bottom:20px;
+
+}
+
+
+.content h1 {
+
+    font-size:55px;
+
+    line-height:1.15;
+
+    color:#35105C;
+
+    margin-bottom:25px;
+
+    font-weight:700;
+
+}
+
+
+.description {
+
+    color:#5f5368;
+
+    font-size:18px;
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
+}
+
+
+
+/* Buttons */
+
+.buttons {
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+
+.primaryBtn {
+
+    background:#6B2D8B;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 35px;
+
+    border-radius:30px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+
+.primaryBtn:hover {
+
+    background:#4e1f68;
+
+}
+
+
+
+.secondaryBtn {
+
+    background:white;
+
+    color:#6B2D8B;
+
+    border:2px solid #6B2D8B;
+
+    padding:13px 35px;
+
+    border-radius:30px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+
+
+/* Image */
+
+.imageBox {
+
+    display:flex;
+
+    justify-content:center;
+
+    
+
+}
+
+
+/* .imageCard {
+
+    background:white;
+
+    padding:0px;
+
+    border-radius:25px;
+
+    box-shadow:0 15px 40px rgba(107,45,139,0.15);
+
+} */
+
+
+
+.imageBox img {
+
+    border-radius:5px;
+
+    object-fit:cover;
+
+}
+
+
+
+/* Mobile */
+
+@media(max-width:900px){
+
+
+.hero {
+
+    flex-direction:column;
+
+    padding:40px 20px;
+
+    text-align:center;
+
+}
+
+
+.content h1 {
+
+    font-size:38px;
+
+}
+
+
+.buttons {
+
+    justify-content:center;
+
+    flex-direction:column;
+
+}
+
+
+.imageCard img {
+
+    width:300px;
+
+    height:auto;
+
+}
+
+
+}

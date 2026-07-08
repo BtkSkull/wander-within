@@ -4,13 +4,13 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  min-height: 100%;
+}
 
 body {
-
-  background: #dfcef0;
-
-  color: white;
-
+  background: #59436f;
+  color: #35105C;
   font-family: Arial, sans-serif;
-
 }
