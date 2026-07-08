@@ -5,6 +5,7 @@ import Testimonials from "@/components/home/Testimonials";
 import TherapistPreview from "@/components/home/TherapistPreview";
 import WhyChoose from "@/components/home/WhyChoose";
 import CTASection from "@/components/home/CTASection";
+import HowTherapyWorks from "@/components/home/HowTherapyWorks";
 
 
 export default function Home(){
@@ -20,6 +21,8 @@ return(
 <Services />
 
 <SupportAreas />
+
+<HowTherapyWorks />
 
 <WhyChoose />
 
