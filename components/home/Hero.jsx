@@ -21,7 +21,7 @@ export default function Hero(){
 
 
                 <h1>
-                    where every step leads to a new discovery..
+                    Where every step leads to a new discovery..
                 </h1>
 
 
