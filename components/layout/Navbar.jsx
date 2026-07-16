@@ -58,8 +58,9 @@ export default function Navbar() {
 
 
         <a 
-          href="https://wa.me/your-number"
+          href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
           target="_blank"
+          rel="noopener noreferrer"
           className={styles.whatsapp}
         >
 
