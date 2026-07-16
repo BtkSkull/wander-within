@@ -1,0 +1,185 @@
+.contactSection {
+    width: 100%;
+    min-height: 100vh;
+    background: #f4efff;
+    padding: 70px 60px;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.heading h1 {
+    font-size: 48px;
+    color: #4b216b;
+    font-family: Georgia, serif;
+    margin-bottom: 15px;
+}
+
+.heading p {
+    font-size: 18px;
+    color: #70538b;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    gap: 40px;
+}
+
+.left {
+    flex: 1;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card,
+.infoCard,
+.mapCard,
+.socialCard {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.card h2,
+.infoCard h2,
+.mapCard h2,
+.socialCard h2 {
+    color: #4b216b;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.inputGroup label {
+    margin-bottom: 8px;
+    color: #4b216b;
+    font-weight: 600;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d8c9ef;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+    background: #fff;
+}
+
+.inputGroup textarea {
+    height: 150px;
+    resize: none;
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+    border-color: #6B2D8B;
+}
+
+.sendBtn {
+    background: #6B2D8B;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.sendBtn:hover {
+    background: #55216f;
+}
+
+.infoItem {
+    margin-bottom: 20px;
+}
+
+.infoItem h4 {
+    color: #6B2D8B;
+    margin-bottom: 5px;
+}
+
+.infoItem p {
+    color: #666;
+}
+
+.map {
+    width: 100%;
+    height: 250px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.socialIcons {
+    display: flex;
+    gap: 18px;
+}
+
+.socialIcons a {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #6B2D8B;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 22px;
+    transition: .3s;
+}
+
+.socialIcons a:hover {
+    background: #4b216b;
+    transform: translateY(-3px);
+}
+
+@media (max-width:900px){
+
+.contactSection{
+    padding:40px 20px;
+}
+
+.container{
+    flex-direction:column;
+}
+
+.heading h1{
+    font-size:36px;
+}
+
+.card,
+.infoCard,
+.mapCard,
+.socialCard{
+    padding:25px;
+}
+
+.sendBtn{
+    width:100%;
+}
+
+}

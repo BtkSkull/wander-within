@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Navbar() {
 
@@ -57,21 +58,15 @@ export default function Navbar() {
         </Link>
 
 
-        <a 
-          href="https://wa.me/your-number"
-          target="_blank"
-          className={styles.whatsapp}
-        >
-
-          <span className={styles.icon}>
-            ◉
-          </span>
-
-          <span>
-            WHATSAPP
-          </span>
-
-        </a>
+        <a
+  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className={styles.whatsapp}
+>
+    <FaWhatsapp className={styles.icon} />
+    WhatsApp
+</a>
 
 
       </div>
