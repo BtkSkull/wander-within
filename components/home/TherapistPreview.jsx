@@ -44,12 +44,12 @@ export default function TherapistPreview(){
 
 
                     <h2>
-        Meet Aakanksha
+        Aakanksha
     </h2>
 
 
     <p>
-        Aakanksha is a warm and compassionate Counselling Psychologist 
+        She is a warm and compassionate Counselling Psychologist 
         who believes that healing begins when you feel truly heard, 
         understood, and accepted without judgment.
     </p>

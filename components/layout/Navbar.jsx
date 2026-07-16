@@ -58,14 +58,14 @@ export default function Navbar() {
         </Link>
 
 
-        <a
+<a
   href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
   target="_blank"
   rel="noopener noreferrer"
   className={styles.whatsapp}
 >
-    <FaWhatsapp className={styles.icon} />
-    WhatsApp
+  <FaWhatsapp className={styles.icon} />
+  WhatsApp
 </a>
 
 
