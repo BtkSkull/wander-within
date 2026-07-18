@@ -1,5 +1,21 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+
+export async function GET() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const bookings = await prisma.booking.findMany({
+    orderBy: { date: "desc" },
+    include: { payment: true },
+  });
+
+  return NextResponse.json(bookings);
+}
 
 export async function POST(request) {
   try {
@@ -8,7 +24,6 @@ export async function POST(request) {
 
     if (event === "invitee.created") {
       const invitee = payload.payload;
-
       await prisma.booking.create({
         data: {
           name: invitee.name,
@@ -23,7 +38,6 @@ export async function POST(request) {
 
     if (event === "invitee.canceled") {
       const invitee = payload.payload;
-
       await prisma.booking.updateMany({
         where: { calendlyEventId: invitee.uri },
         data: { status: "CANCELLED" },
