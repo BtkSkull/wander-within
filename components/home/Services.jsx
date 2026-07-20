@@ -35,7 +35,13 @@ const services = [
         title:"Addiction Recovery & Lifestyle Wellness",
         description:
         "Support for addiction recovery, relapse prevention, mindfulness and healthy coping strategies."
-    }
+    },
+
+    {
+    title: "Trauma, Grief & Emotional Healing",
+    description:
+      "Compassionate support for trauma recovery, grief counselling, emotional healing, resilience building and coping with life-changing experiences."
+},
 
 ];
 

@@ -143,42 +143,96 @@
 
 }
 
-/* Responsive */
+/* ========================= */
+/* Tablet */
+/* ========================= */
 
-@media(max-width:992px){
-
-.grid{
-
-    grid-template-columns:repeat(2,1fr);
-
-}
-
-}
-
-@media(max-width:700px){
+@media (max-width:992px){
 
 .servicesSection{
+    padding:60px 30px;
+}
 
-    padding:50px 20px;
-
+.heading{
+    margin-bottom:45px;
 }
 
 .heading h1{
+    font-size:42px;
+}
 
-    font-size:38px;
-
+.heading p{
+    font-size:17px;
 }
 
 .grid{
-
-    grid-template-columns:1fr;
-
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
 }
 
 .card{
-
     padding:30px;
+}
 
+.icon{
+    width:70px;
+    height:70px;
+    font-size:34px;
+}
+
+}
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media (max-width:768px){
+
+.servicesSection{
+    padding:50px 18px;
+}
+
+.heading{
+    margin-bottom:35px;
+}
+
+.heading h1{
+    font-size:32px;
+}
+
+.heading p{
+    font-size:15px;
+    line-height:1.7;
+}
+
+.grid{
+    grid-template-columns:1fr;
+    gap:22px;
+}
+
+.card{
+    padding:25px;
+    border-radius:18px;
+}
+
+.icon{
+    width:65px;
+    height:65px;
+    font-size:30px;
+}
+
+.card h2{
+    font-size:22px;
+}
+
+.card p{
+    font-size:15px;
+}
+
+.bookBtn{
+    width:100%;
+    text-align:center;
+    padding:14px;
 }
 
 }

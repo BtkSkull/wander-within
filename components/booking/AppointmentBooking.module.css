@@ -1,83 +1,62 @@
 .card{
 
     background:#f8f1ff;
-
     padding:30px;
-
     border-radius:20px;
-
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
 
 }
-
-
 
 .card h2{
 
     text-align:center;
-
     color:#4b216b;
-
     font-family:Georgia,serif;
-
     font-size:32px;
-
     margin-bottom:30px;
 
 }
 
-
+/* Booking Box */
 
 .calendlyBox{
 
     background:white;
-
     border-radius:20px;
-
     overflow:hidden;
-
     border:1px solid #cbb4e5;
 
 }
 
-
+/* Header */
 
 .header{
 
     background:#d9c1ee;
-
     color:#6B2D8B;
-
     font-size:28px;
-
     font-weight:600;
-
     padding:20px;
+    text-align:center;
 
 }
 
-
+/* Content */
 
 .content{
 
     display:flex;
-
     min-height:250px;
 
 }
-
-
 
 .left,
 .right{
 
     width:50%;
-
     padding:25px;
 
 }
-
-
 
 .left{
 
@@ -85,70 +64,112 @@
 
 }
 
-
-
 .left h4,
 .right h4{
 
     color:#4b216b;
-
     margin-bottom:20px;
+    font-size:20px;
 
 }
-
-
 
 .left p{
 
     color:#555;
-
     margin:15px 0;
+    line-height:1.6;
 
 }
 
-
+/* Time Buttons */
 
 .times{
 
     display:flex;
-
     flex-wrap:wrap;
-
     gap:15px;
 
 }
 
-
-
 .times button{
 
     background:#eadbfa;
-
     color:#4b216b;
-
     border:none;
-
     padding:10px 15px;
-
     border-radius:8px;
-
     cursor:pointer;
+    transition:.3s;
 
 }
-
-
 
 .times button:hover{
 
     background:#6B2D8B;
-
     color:white;
+    transform:translateY(-2px);
 
 }
 
+/* ========================= */
+/* Tablet */
+/* ========================= */
 
+@media(max-width:992px){
 
-@media(max-width:700px){
+.card{
+
+    padding:25px;
+
+}
+
+.card h2{
+
+    font-size:28px;
+
+}
+
+.header{
+
+    font-size:24px;
+
+}
+
+.left,
+.right{
+
+    padding:20px;
+
+}
+
+}
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media(max-width:768px){
+
+.card{
+
+    padding:18px;
+    border-radius:18px;
+
+}
+
+.card h2{
+
+    font-size:24px;
+    margin-bottom:20px;
+
+}
+
+.header{
+
+    font-size:22px;
+    padding:15px;
+
+}
 
 .content{
 
@@ -156,22 +177,60 @@
 
 }
 
-
 .left,
 .right{
 
     width:100%;
+    padding:20px;
 
 }
-
 
 .left{
 
     border-right:none;
-
     border-bottom:1px solid #ddd;
 
 }
 
+.left h4,
+.right h4{
+
+    font-size:18px;
+
+}
+
+.left p{
+
+    font-size:14px;
+
+}
+
+.times{
+
+    gap:10px;
+
+}
+
+.times button{
+
+    flex:1 1 calc(50% - 10px);
+    padding:12px;
+    font-size:14px;
+
+}
+
+}
+
+/* ========================= */
+/* Small Mobile */
+/* ========================= */
+
+@media(max-width:480px){
+
+.times button{
+
+    flex:1 1 100%;
+
+}
 
 }

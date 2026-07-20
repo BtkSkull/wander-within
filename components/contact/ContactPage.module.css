@@ -20,6 +20,7 @@
 .heading p {
     font-size: 18px;
     color: #70538b;
+    line-height: 1.7;
 }
 
 .container {
@@ -27,6 +28,7 @@
     margin: auto;
     display: flex;
     gap: 40px;
+    align-items: flex-start;
 }
 
 .left {
@@ -44,10 +46,10 @@
 .infoCard,
 .mapCard,
 .socialCard {
-    background: #ffffff;
+    background: white;
     padding: 35px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(107,45,139,.08);
 }
 
 .card h2,
@@ -55,7 +57,7 @@
 .mapCard h2,
 .socialCard h2 {
     color: #4b216b;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     font-size: 28px;
 }
 
@@ -73,113 +75,308 @@
 
 .inputGroup input,
 .inputGroup textarea {
+
     width: 100%;
+
     padding: 14px;
+
     border: 1px solid #d8c9ef;
-    border-radius: 10px;
+
+    border-radius: 12px;
+
     outline: none;
+
+    background: white;
+
     font-size: 15px;
-    background: #fff;
+
+    transition: .3s;
+
 }
 
-.inputGroup textarea {
-    height: 150px;
-    resize: none;
+.inputGroup textarea{
+
+    height:150px;
+    resize:none;
+
 }
 
 .inputGroup input:focus,
-.inputGroup textarea:focus {
-    border-color: #6B2D8B;
+.inputGroup textarea:focus{
+
+    border-color:#6B2D8B;
+
+    box-shadow:0 0 0 3px rgba(107,45,139,.15);
+
 }
 
-.sendBtn {
-    background: #6B2D8B;
-    color: white;
-    border: none;
-    padding: 15px 35px;
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: .3s;
+.sendBtn{
+
+    width:fit-content;
+
+    background:#6B2D8B;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 40px;
+
+    border-radius:35px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
 }
 
-.sendBtn:hover {
-    background: #55216f;
+.sendBtn:hover{
+
+    background:#55216f;
+
+    transform:translateY(-2px);
+
 }
 
-.infoItem {
-    margin-bottom: 20px;
+.infoItem{
+
+    margin-bottom:22px;
+
 }
 
-.infoItem h4 {
-    color: #6B2D8B;
-    margin-bottom: 5px;
+.infoItem h4{
+
+    color:#6B2D8B;
+
+    margin-bottom:6px;
+
 }
 
-.infoItem p {
-    color: #666;
+.infoItem p{
+
+    color:#666;
+
+    line-height:1.7;
+
 }
 
-.map {
-    width: 100%;
-    height: 250px;
-    border-radius: 15px;
-    overflow: hidden;
+.map{
+
+    width:100%;
+    height:260px;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
 }
 
-.map iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
+.map iframe{
+
+    width:100%;
+    height:100%;
+    border:none;
+
 }
 
-.socialIcons {
-    display: flex;
-    gap: 18px;
+.socialIcons{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
 }
 
-.socialIcons a {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #6B2D8B;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    font-size: 22px;
-    transition: .3s;
+.socialIcons a{
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    background:#6B2D8B;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+
+    font-size:22px;
+
+    transition:.3s;
+
 }
 
-.socialIcons a:hover {
-    background: #4b216b;
-    transform: translateY(-3px);
+.socialIcons a:hover{
+
+    background:#4b216b;
+
+    transform:translateY(-3px);
+
 }
 
-@media (max-width:900px){
+/* ========================= */
+/* Tablet */
+/* ========================= */
+
+@media(max-width:992px){
 
 .contactSection{
-    padding:40px 20px;
+
+    padding:55px 30px;
+
 }
 
 .container{
+
     flex-direction:column;
+
+    gap:30px;
+
+}
+
+.left,
+.right{
+
+    width:100%;
+
 }
 
 .heading h1{
-    font-size:36px;
+
+    font-size:40px;
+
+}
+
+.heading p{
+
+    font-size:17px;
+
 }
 
 .card,
 .infoCard,
 .mapCard,
 .socialCard{
-    padding:25px;
+
+    padding:28px;
+
 }
 
 .sendBtn{
+
     width:100%;
+
+}
+
+}
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media(max-width:768px){
+
+.contactSection{
+
+    padding:40px 18px;
+
+}
+
+.heading{
+
+    margin-bottom:35px;
+
+}
+
+.heading h1{
+
+    font-size:30px;
+
+}
+
+.heading p{
+
+    font-size:15px;
+
+}
+
+.container{
+
+    gap:22px;
+
+}
+
+.card,
+.infoCard,
+.mapCard,
+.socialCard{
+
+    padding:22px;
+    border-radius:18px;
+
+}
+
+.card h2,
+.infoCard h2,
+.mapCard h2,
+.socialCard h2{
+
+    font-size:22px;
+
+}
+
+.inputGroup input,
+.inputGroup textarea{
+
+    padding:12px;
+    font-size:14px;
+
+}
+
+.sendBtn{
+
+    width:100%;
+    padding:14px;
+
+}
+
+.map{
+
+    height:220px;
+
+}
+
+.socialIcons{
+
+    justify-content:center;
+    gap:15px;
+
+}
+
+.socialIcons a{
+
+    width:45px;
+    height:45px;
+
+    font-size:20px;
+
+}
+
+.infoItem p{
+
+    font-size:14px;
+
 }
 
 }

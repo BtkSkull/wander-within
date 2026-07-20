@@ -74,27 +74,13 @@ export default function IntakeForm(){
 
 
 
-                <h3>
+                {/* <h3>
                     E-Signature
-                </h3>
+                </h3> */}
 
 
 
-                <div className={styles.bottom}>
-
-
-                    <input 
-                    className={styles.signature}
-                    />
-
-
-                    <button>
-                        SUBMIT
-                    </button>
-
-
-                </div>
-
+                
 
 
             </div>
