@@ -1,13 +1,16 @@
 'use client';
 
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import styles from "./IntakeForm.module.css";
 
 export default function IntakeForm({ onSubmitted }) {
+    const { data: session } = useSession();
+
     const [form, setForm] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
+        firstName: session?.user?.name?.split(" ")[0] || "",
+        lastName: session?.user?.name?.split(" ").slice(1).join(" ") || "",
+        email: session?.user?.email || "",
         phone: "",
         reason: "",
         agreed: false,
@@ -72,7 +75,15 @@ export default function IntakeForm({ onSubmitted }) {
                     <input name="lastName" placeholder="Last Name" value={form.lastName} onChange={handleChange} required />
                 </div>
                 <div className={styles.row}>
-                    <input type="email" name="email" placeholder="Email Address" value={form.email} onChange={handleChange} required />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        value={form.email}
+                        onChange={handleChange}
+                        readOnly={!!session?.user?.email}
+                        required
+                    />
                     <input name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} required />
                 </div>
 

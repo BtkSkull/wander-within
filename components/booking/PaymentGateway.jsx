@@ -3,12 +3,12 @@
 import { useState } from "react";
 import styles from "./PaymentGateway.module.css";
 
-export default function PaymentGateway({ bookingId, amount = 500, customerName, customerEmail, customerPhone }) {
+export default function PaymentGateway({ bookingId, amount = 500, customerName, customerEmail, customerPhone, onSuccess }) {
     const [loading, setLoading] = useState(false);
 
     const handlePayment = async () => {
         if (!bookingId) {
-            alert("Please complete your booking first, then enter the Booking ID to pay.");
+            alert("Something went wrong. Please refresh and try again.");
             return;
         }
 
@@ -60,7 +60,7 @@ export default function PaymentGateway({ bookingId, amount = 500, customerName, 
                     const verifyData = await verifyRes.json();
 
                     if (verifyData.success) {
-                        alert("Payment successful! Your session is confirmed.");
+                        if (onSuccess) onSuccess();
                     } else {
                         alert("Payment verification failed. Please contact support.");
                     }
@@ -79,13 +79,9 @@ export default function PaymentGateway({ bookingId, amount = 500, customerName, 
 
     return (
         <div className={styles.card}>
-            <h2>
-                Secure Payment Gateway
-            </h2>
+            <h2>Secure Payment Gateway</h2>
             <div className={styles.paymentBox}>
-                <h3>
-                    Pay via UPI
-                </h3>
+                <h3>Pay via UPI</h3>
                 <button onClick={handlePayment} disabled={loading}>
                     {loading ? "Processing..." : `PAY ₹${amount}`}
                 </button>

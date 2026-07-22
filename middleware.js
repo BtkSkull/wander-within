@@ -3,18 +3,24 @@ import { NextResponse } from "next/server";
 
 export default withAuth(
   function middleware(req) {
+    const { pathname } = req.nextUrl;
+    const token = req.nextauth.token;
+
+    if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
+      if (token?.role !== "ADMIN" && token?.role !== "SUPER_ADMIN") {
+        return NextResponse.redirect(new URL("/admin/login", req.url));
+      }
+    }
+
     return NextResponse.next();
   },
   {
     callbacks: {
       authorized: ({ token }) => !!token,
     },
-    pages: {
-      signIn: "/admin/login",
-    },
   }
 );
 
 export const config = {
-  matcher: ["/admin/((?!login).*)"],
+  matcher: ["/admin/((?!login).*)", "/booking"],
 };

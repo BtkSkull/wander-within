@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { sendNotificationEmail } from "@/lib/email";
 import { intakeFormSchema } from "@/lib/validators/intakeForm";
 
 export async function POST(request) {
@@ -8,16 +7,26 @@ export async function POST(request) {
     const body = await request.json();
     const data = intakeFormSchema.parse(body);
 
+    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+    const recent = await prisma.intakeForm.findFirst({
+      where: {
+        email: data.email,
+        submittedAt: { gte: fiveMinutesAgo },
+      },
+    });
+
+    if (recent) {
+      return NextResponse.json(
+        { success: false, error: "You've already submitted recently. Please wait a few minutes." },
+        { status: 429 }
+      );
+    }
+
     const saved = await prisma.intakeForm.create({
       data: {
         ...data,
         dateOfBirth: data.dateOfBirth ? new Date(data.dateOfBirth) : null,
       },
-    });
-
-    await sendNotificationEmail({
-      subject: `New Intake Form Submitted — ${data.fullName}`,
-      html: `<p>A new client intake form was submitted by <strong>${data.fullName}</strong>. Log in to the admin dashboard to view full details.</p>`,
     });
 
     return NextResponse.json({ success: true, id: saved.id });

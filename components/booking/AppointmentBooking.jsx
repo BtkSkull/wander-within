@@ -15,7 +15,7 @@ export default function AppointmentBooking({ prefillEmail, prefillName, onBooked
             <h2>Online Appointment Booking</h2>
             <div className={styles.calendlyBox}>
                 <InlineWidget
-                    url="https://calendly.com/bloxfruiz000"
+                    url="https://calendly.com/bloxfruiz000/new-meeting"
                     styles={{ height: '600px', width: '100%' }}
                     prefill={{ name: prefillName, email: prefillEmail }}
                     pageSettings={{

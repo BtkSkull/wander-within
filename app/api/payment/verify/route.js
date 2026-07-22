@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
+import { sendNotificationEmail } from "@/lib/email";
 
 export async function POST(request) {
   try {
@@ -35,9 +36,18 @@ export async function POST(request) {
       },
     });
 
-    await prisma.booking.update({
-      where: { id: bookingId },
-      data: { status: "CONFIRMED" },
+    const booking = await prisma.booking.findUnique({ where: { id: bookingId } });
+
+    await sendNotificationEmail({
+      subject: `New Booking & Payment Confirmed — ${booking.name}`,
+      html: `
+        <p><strong>Name:</strong> ${booking.name}</p>
+        <p><strong>Email:</strong> ${booking.email}</p>
+        <p><strong>Service:</strong> ${booking.service}</p>
+        <p><strong>Date:</strong> ${new Date(booking.date).toLocaleString()}</p>
+        <p><strong>Payment:</strong> Paid via UPI</p>
+        <p>Log in to the admin dashboard to view full intake details.</p>
+      `,
     });
 
     return NextResponse.json({ success: true });

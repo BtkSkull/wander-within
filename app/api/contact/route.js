@@ -8,6 +8,21 @@ export async function POST(request) {
     const body = await request.json();
     const data = contactSchema.parse(body);
 
+    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+    const recent = await prisma.contactMessage.findFirst({
+      where: {
+        email: data.email,
+        createdAt: { gte: fiveMinutesAgo },
+      },
+    });
+
+    if (recent) {
+      return NextResponse.json(
+        { success: false, error: "You've already submitted recently. Please wait a few minutes." },
+        { status: 429 }
+      );
+    }
+
     const saved = await prisma.contactMessage.create({ data });
 
     await sendNotificationEmail({

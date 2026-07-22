@@ -1,36 +1,66 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import IntakeForm from "@/components/booking/IntakeForm";
 import AppointmentBooking from "@/components/booking/AppointmentBooking";
 import PaymentGateway from "@/components/booking/PaymentGateway";
 
 export default function BookingPage() {
+    const { data: session, status } = useSession();
+    const router = useRouter();
+
     const [customer, setCustomer] = useState(null);
     const [bookingId, setBookingId] = useState(null);
     const [bookingInfo, setBookingInfo] = useState(null);
-    const [showModal, setShowModal] = useState(false);
+    const [confirmed, setConfirmed] = useState(false);
+    const [paid, setPaid] = useState(false);
     const [checking, setChecking] = useState(false);
-    const [cashChosen, setCashChosen] = useState(false);
 
-    const pollForBooking = async (email) => {
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push("/login");
+        }
+    }, [status, router]);
+
+    const handleIntakeSubmitted = async (customerData) => {
+        try {
+            const res = await fetch("/api/booking/create-pending", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(customerData),
+            });
+            const data = await res.json();
+
+            if (data.success) {
+                setCustomer(customerData);
+                setBookingId(data.bookingId);
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Something went wrong. Please try again.");
+        }
+    };
+
+    const pollForConfirmation = () => {
         setChecking(true);
-        const since = Date.now();
         let attempts = 0;
         const maxAttempts = 15;
 
         const interval = setInterval(async () => {
             attempts++;
             try {
-                const res = await fetch(`/api/booking/lookup?email=${encodeURIComponent(email)}&since=${since}`);
+                const res = await fetch(`/api/booking/lookup?id=${bookingId}`);
                 const data = await res.json();
 
                 if (data.found) {
                     clearInterval(interval);
                     setChecking(false);
-                    setBookingId(data.booking.id);
                     setBookingInfo(data.booking);
-                    setShowModal(true);
+                    setConfirmed(true);
                 }
             } catch (error) {
                 console.error(error);
@@ -43,86 +73,119 @@ export default function BookingPage() {
         }, 2000);
     };
 
-    const handleBooked = () => {
-        if (customer?.email) pollForBooking(customer.email);
+    const handlePaymentSuccess = () => {
+        setPaid(true);
     };
 
-    const handlePayLater = async () => {
-        await fetch("/api/booking/mark-cash", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ bookingId }),
-        });
-        setCashChosen(true);
-    };
+    if (status === "loading") {
+        return <main style={{ minHeight: "100vh", background: "#eee4ff" }} />;
+    }
+
+    if (status === "unauthenticated") {
+        return null;
+    }
 
     return (
-        <main className="bookingPage">
-            <div className="leftSide">
-                <IntakeForm onSubmitted={setCustomer} />
-            </div>
-            <div className="rightSide">
-                <AppointmentBooking
-                    prefillEmail={customer?.email}
-                    prefillName={customer?.name}
-                    onBooked={handleBooked}
-                />
-                {checking && (
-                    <p style={{ textAlign: "center", color: "#6B2D8B" }}>Confirming your booking...</p>
+        <main style={{ minHeight: "100vh", background: "#eee4ff", padding: "40px 20px" }}>
+            <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+
+                {!customer && (
+                    <IntakeForm onSubmitted={handleIntakeSubmitted} />
                 )}
-            </div>
 
-            {showModal && (
-                <div style={{
-                    position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)",
-                    display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000,
-                }}>
-                    <div style={{ background: "white", borderRadius: "16px", padding: "30px", maxWidth: "420px", width: "90%" }}>
-                        {!cashChosen ? (
-                            <>
-                                <h2 style={{ color: "#6B2D8B" }}>Your session is booked!</h2>
-                                <p>
-                                    {bookingInfo?.service} on{" "}
-                                    {bookingInfo?.date && new Date(bookingInfo.date).toLocaleString()}
-                                </p>
-                                <p>Would you like to pay now, or pay later in cash?</p>
+                {customer && !confirmed && (
+                    <div>
+                        <div style={{
+                            background: "#f8f6fc", borderRadius: "16px", padding: "16px 24px",
+                            marginBottom: "24px", textAlign: "center",
+                        }}>
+                            <h2 style={{ color: "#6B2D8B", margin: 0 }}>Pick a time that works for you</h2>
+                            <p style={{ color: "#5f4370", margin: "6px 0 0" }}>
+                                Choose an available slot below. Payment happens right after.
+                            </p>
+                        </div>
 
-                                <div style={{ marginTop: "20px" }}>
-                                    <PaymentGateway
-                                        bookingId={bookingId}
-                                        amount={500}
-                                        customerName={customer?.name}
-                                        customerEmail={customer?.email}
-                                        customerPhone={customer?.phone}
-                                    />
-                                </div>
-
-                                <button
-                                    onClick={handlePayLater}
-                                    style={{
-                                        marginTop: "12px", background: "transparent", border: "1px solid #6B2D8B",
-                                        color: "#6B2D8B", padding: "10px 20px", borderRadius: "30px", width: "100%",
-                                    }}
-                                >
-                                    Pay Later (Cash)
-                                </button>
-                            </>
-                        ) : (
-                            <>
-                                <h2 style={{ color: "#6B2D8B" }}>All set!</h2>
-                                <p>You've chosen to pay in person. We look forward to seeing you.</p>
-                            </>
-                        )}
-
-                        <button
-                            onClick={() => setShowModal(false)}
-                            style={{ marginTop: "12px", background: "none", border: "none", color: "#999", width: "100%" }}
-                        >
-                            Close
-                        </button>
+                        <AppointmentBooking
+                            prefillEmail={customer.email}
+                            prefillName={customer.name}
+                            onBooked={pollForConfirmation}
+                        />
                     </div>
-                </div>
-            )}
+                )}
+
+                {confirmed && !paid && (
+                    <div>
+                        <div style={{
+                            background: "#f8f6fc", borderRadius: "16px", padding: "16px 24px",
+                            marginBottom: "24px", textAlign: "center",
+                        }}>
+                            <h2 style={{ color: "#6B2D8B", margin: 0 }}>Time slot reserved!</h2>
+                            <p style={{ color: "#5f4370", margin: "6px 0 0" }}>
+                                {bookingInfo?.service} on{" "}
+                                {bookingInfo?.date && new Date(bookingInfo.date).toLocaleString()}
+                                <br />
+                                Complete payment below to confirm your session.
+                            </p>
+                        </div>
+
+                        <PaymentGateway
+                            bookingId={bookingId}
+                            amount={500}
+                            customerName={customer.name}
+                            customerEmail={customer.email}
+                            customerPhone={customer.phone}
+                            onSuccess={handlePaymentSuccess}
+                        />
+                    </div>
+                )}
+
+                {paid && (
+                    <div style={{
+                        background: "white", borderRadius: "16px", padding: "40px", textAlign: "center",
+                    }}>
+                        <h2 style={{ color: "#6B2D8B" }}>You're all set!</h2>
+                        <p style={{ color: "#5f4370" }}>
+                            Your session is booked and payment confirmed. We look forward to seeing you.
+                        </p>
+                    </div>
+                )}
+
+                {checking && (
+                    <div style={{
+                        position: "fixed",
+                        bottom: "24px",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        background: "white",
+                        borderRadius: "30px",
+                        padding: "14px 28px",
+                        boxShadow: "0 8px 24px rgba(107,45,139,0.25)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "12px",
+                        zIndex: 1000,
+                    }}>
+                        <div style={{
+                            width: "18px",
+                            height: "18px",
+                            border: "3px solid #e4dcf3",
+                            borderTopColor: "#6B2D8B",
+                            borderRadius: "50%",
+                            animation: "spin 0.8s linear infinite",
+                        }} />
+                        <span style={{ color: "#6B2D8B", fontWeight: 500 }}>
+                            Confirming your booking, just a few seconds...
+                        </span>
+                    </div>
+                )}
+
+                <style>{`
+                    @keyframes spin {
+                        to { transform: rotate(360deg); }
+                    }
+                `}</style>
+
+            </div>
         </main>
     )
 }

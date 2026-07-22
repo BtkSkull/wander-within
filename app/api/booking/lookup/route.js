@@ -3,23 +3,18 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const email = searchParams.get("email");
-  const since = searchParams.get("since");
+  const id = searchParams.get("id");
 
-  if (!email) {
-    return NextResponse.json({ error: "Email required" }, { status: 400 });
+  if (!id) {
+    return NextResponse.json({ error: "id required" }, { status: 400 });
   }
 
-  const booking = await prisma.booking.findFirst({
-    where: {
-      email,
-      ...(since ? { createdAt: { gte: new Date(Number(since)) } } : {}),
-    },
-    orderBy: { createdAt: "desc" },
+  const booking = await prisma.booking.findUnique({
+    where: { id },
     include: { payment: true },
   });
 
-  if (!booking) {
+  if (!booking || booking.status !== "CONFIRMED") {
     return NextResponse.json({ found: false });
   }
 
