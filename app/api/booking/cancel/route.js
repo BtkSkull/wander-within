@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { razorpay } from "@/lib/razorpay";
+import { sendNotificationEmail } from "@/lib/email";
 
 export async function POST(request) {
   try {
-    const { bookingId } = await request.json();
+    const { bookingId, reason } = await request.json();
 
     if (!bookingId) {
       return NextResponse.json({ error: "bookingId required" }, { status: 400 });
@@ -19,50 +19,48 @@ export async function POST(request) {
       return NextResponse.json({ error: "Booking not found" }, { status: 404 });
     }
 
-    if (booking.calendlyEventId) {
-      const eventUuid = booking.calendlyEventId
-        .split("/scheduled_events/")[1]
-        ?.split("/invitees/")[0];
+    if (!["CONFIRMED"].includes(booking.status)) {
+  return NextResponse.json(
+    { error: "This booking cannot be cancelled right now." },
+    { status: 400 }
+  );
+}
 
-      if (eventUuid) {
-        await fetch(`https://api.calendly.com/scheduled_events/${eventUuid}/cancellation`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${process.env.CALENDLY_API_TOKEN}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ reason: "Cancelled by client" }),
-        });
-      }
-    }
+if (new Date(booking.date) <= new Date()) {
+  return NextResponse.json(
+    { error: "This session has already taken place and cannot be cancelled." },
+    { status: 400 }
+  );
+}
 
-    let refunded = false;
+    const hoursUntilSession = (new Date(booking.date) - new Date()) / (1000 * 60 * 60);
+    const withinWindow = hoursUntilSession >= 24;
 
-    if (booking.payment && booking.payment.status === "PAID" && booking.payment.razorpayPaymentId) {
-      try {
-        await razorpay.payments.refund(booking.payment.razorpayPaymentId, {
-          amount: booking.payment.amount,
-        });
-
-        await prisma.payment.update({
-          where: { id: booking.payment.id },
-          data: { status: "REFUNDED" },
-        });
-
-        refunded = true;
-      } catch (refundError) {
-        console.error("Refund failed:", refundError);
-      }
-    }
-
-    await prisma.booking.update({
+    const updated = await prisma.booking.update({
       where: { id: bookingId },
-      data: { status: "CANCELLED" },
+      data: {
+        status: "CANCELLATION_REQUESTED",
+        cancellationReason: reason || null,
+        cancellationRequestedAt: new Date(),
+      },
     });
 
-    return NextResponse.json({ success: true, refunded });
+    await sendNotificationEmail({
+      subject: `Cancellation Requested — ${booking.name}`,
+      html: `
+        <p><strong>Name:</strong> ${booking.name}</p>
+        <p><strong>Email:</strong> ${booking.email}</p>
+        <p><strong>Service:</strong> ${booking.service}</p>
+        <p><strong>Session Date:</strong> ${new Date(booking.date).toLocaleString()}</p>
+        <p><strong>Reason given:</strong> ${reason || "No reason provided"}</p>
+        <p><strong>Eligible for refund (24h+ notice):</strong> ${withinWindow ? "Yes" : "No — within 24 hours"}</p>
+        <p>Log in to the admin dashboard to approve or reject this refund.</p>
+      `,
+    });
+
+    return NextResponse.json({ success: true, booking: updated, eligibleForRefund: withinWindow });
   } catch (error) {
-    console.error("Cancel booking error:", error);
-    return NextResponse.json({ error: "Failed to cancel booking" }, { status: 500 });
+    console.error("Cancellation request error:", error);
+    return NextResponse.json({ error: "Failed to request cancellation" }, { status: 500 });
   }
 }
