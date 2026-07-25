@@ -46,7 +46,7 @@ export default function OurStory() {
         <div className={styles.right}>
 
           <div className={styles.card}>
-            <h3>🎯 Our Mission</h3>
+            <h3>Our Mission</h3>
 
             <p>
               Empower individuals to lead healthier, happier and emotionally
@@ -55,7 +55,7 @@ export default function OurStory() {
           </div>
 
           <div className={styles.card}>
-            <h3>🌿 Our Vision</h3>
+            <h3>Our Vision</h3>
 
             <p>
               Creating a world where seeking therapy is seen as a strength,

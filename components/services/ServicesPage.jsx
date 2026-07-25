@@ -6,37 +6,37 @@ const services = [
     title: "Individual Therapy & Emotional Well-being",
     description:
       "Support for anxiety, stress, burnout, emotional regulation, self-esteem and personal growth.",
-    icon: "🧠",
+    // icon: "🧠",
   },
   {
     title: "Child, Adolescent & Parent Support",
     description:
       "Counselling for children, teenagers and parents dealing with behavioural, emotional and academic concerns.",
-    icon: "👨‍👩‍👧",
+    // icon: "👨‍👩‍👧",
   },
   {
     title: "Relationship & Family Counselling",
     description:
       "Improve communication, resolve conflicts and strengthen healthy relationships.",
-    icon: "❤️",
+    // icon: "❤️",
   },
   {
     title: "Group Programs & Mental Health Workshops",
     description:
       "Interactive group sessions, school, college and corporate wellness workshops.",
-    icon: "👥",
+    // icon: "👥",
   },
   {
     title: "Addiction Recovery & Lifestyle Wellness",
     description:
       "Helping individuals overcome addiction while building healthy coping skills and resilience.",
-    icon: "🌿",
+    // icon: "🌿",
   },
   {
     title: "Mindfulness & Self Discovery",
     description:
       "Learn mindfulness techniques, emotional awareness and develop inner peace.",
-    icon: "🪷",
+    // icon: "🪷",
   },
 ];
 

@@ -12,7 +12,7 @@ export default function Qualifications() {
       <div className={styles.grid}>
 
         <div className={styles.card}>
-          <div className={styles.icon}>🎓</div>
+          {/* <div className={styles.icon}>🎓</div> */}
           <h3>Master's Degree</h3>
           <p>
             Master's in Clinical Psychology with extensive practical
@@ -21,7 +21,7 @@ export default function Qualifications() {
         </div>
 
         <div className={styles.card}>
-          <div className={styles.icon}>📜</div>
+          {/* <div className={styles.icon}>📜</div> */}
           <h3>Licensed Therapist</h3>
           <p>
             Certified mental health professional following ethical and
@@ -30,7 +30,7 @@ export default function Qualifications() {
         </div>
 
         <div className={styles.card}>
-          <div className={styles.icon}>🧠</div>
+          {/* <div className={styles.icon}>🧠</div> */}
           <h3>CBT Specialist</h3>
           <p>
             Specialized in Cognitive Behavioural Therapy for anxiety,
@@ -39,7 +39,7 @@ export default function Qualifications() {
         </div>
 
         <div className={styles.card}>
-          <div className={styles.icon}>🌿</div>
+          {/* <div className={styles.icon}>🌿</div> */}
           <h3>Mindfulness Coach</h3>
           <p>
             Helping clients build emotional resilience through
