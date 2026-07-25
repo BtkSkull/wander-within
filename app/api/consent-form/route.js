@@ -7,6 +7,21 @@ export async function POST(request) {
     const body = await request.json();
     const data = consentFormSchema.parse(body);
 
+    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+    const recent = await prisma.consentForm.findFirst({
+      where: {
+        email: data.email,
+        submittedAt: { gte: fiveMinutesAgo },
+      },
+    });
+
+    if (recent) {
+      return NextResponse.json(
+        { success: false, error: "You've already submitted recently. Please wait a few minutes." },
+        { status: 429 }
+      );
+    }
+
     const forwardedFor = request.headers.get("x-forwarded-for");
     const ipAddress = forwardedFor ? forwardedFor.split(",")[0] : "unknown";
 

@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -13,13 +12,11 @@ export default function AdminLoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
     const result = await signIn('credentials', {
       email,
       password,
       redirect: false,
     });
-
     if (result?.error) {
       setError('Invalid email or password');
     } else {
@@ -28,30 +25,50 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '80px auto', padding: '20px' }}>
-      <h1>Admin Login</h1>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{ padding: '10px' }}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{ padding: '10px' }}
-        />
-        <button type="submit" style={{ padding: '10px', background: '#6B2D8B', color: 'white', border: 'none', borderRadius: '6px' }}>
-          Log In
-        </button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      </form>
-    </div>
+    <main style={{ minHeight: '100vh', background: '#eee4ff', padding: '80px 20px' }}>
+      <div style={{
+        maxWidth: '400px',
+        margin: '0 auto',
+        padding: '40px',
+        background: 'white',
+        borderRadius: '16px',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
+      }}>
+        <h1 style={{ color: '#6B2D8B', marginBottom: '20px', textAlign: 'center' }}>Admin Login</h1>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={{ padding: '12px', borderRadius: '8px', border: '1px solid #bda6d8' }}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={{ padding: '12px', borderRadius: '8px', border: '1px solid #bda6d8' }}
+          />
+          <button
+            type="submit"
+            style={{
+              padding: '12px',
+              background: '#6B2D8B',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontWeight: 600,
+            }}
+          >
+            Log In
+          </button>
+          {error && <p style={{ color: '#d33', margin: 0 }}>{error}</p>}
+        </form>
+      </div>
+    </main>
   );
 }

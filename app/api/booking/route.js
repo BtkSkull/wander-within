@@ -24,16 +24,35 @@ export async function POST(request) {
 
     if (event === "invitee.created") {
       const invitee = payload.payload;
-      await prisma.booking.create({
-        data: {
-          name: invitee.name,
-          email: invitee.email,
-          service: invitee.event_type?.name || "General Session",
-          date: new Date(invitee.scheduled_event.start_time),
-          status: "CONFIRMED",
-          calendlyEventId: invitee.uri,
-        },
+      const email = invitee.email;
+
+      const pending = await prisma.booking.findFirst({
+        where: { email, status: "PENDING" },
+        orderBy: { createdAt: "desc" },
       });
+
+      if (pending) {
+        await prisma.booking.update({
+          where: { id: pending.id },
+          data: {
+            service: invitee.event_type?.name || "General Session",
+            date: new Date(invitee.scheduled_event.start_time),
+            status: "CONFIRMED",
+            calendlyEventId: invitee.uri,
+          },
+        });
+      } else {
+        await prisma.booking.create({
+          data: {
+            name: invitee.name,
+            email: invitee.email,
+            service: invitee.event_type?.name || "General Session",
+            date: new Date(invitee.scheduled_event.start_time),
+            status: "CONFIRMED",
+            calendlyEventId: invitee.uri,
+          },
+        });
+      }
     }
 
     if (event === "invitee.canceled") {
