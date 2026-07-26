@@ -86,24 +86,46 @@ export default function BookingPage() {
     }
 
     return (
-        <main style={{ minHeight: "100vh", background: "#eee4ff", padding: "40px 20px" }}>
-            <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+        <main style={{ minHeight: "100vh", background: "#eee4ff", padding: "clamp(20px, 5vw, 40px) clamp(12px, 4vw, 20px)" }}>
+    <div style={{ maxWidth: "700px", margin: "0 auto", width: "100%" }}>
 
                 {!customer && (
-                    <IntakeForm onSubmitted={handleIntakeSubmitted} />
-                )}
+    <>
+        <div style={{
+            display: "flex", justifyContent: "center", gap: "16px", marginBottom: "20px",
+        }}>
+            <div style={{
+                background: "white", padding: "10px 24px", borderRadius: "30px",
+                boxShadow: "0 2px 8px rgba(70,50,128,0.08)", display: "flex", gap: "16px",
+            }}>
+                <span style={{ color: "#463280", fontWeight: 600, fontSize: "14px" }}>₹500 per session</span>
+                <span style={{ color: "#bda6d8" }}>|</span>
+                <span style={{ color: "#463280", fontWeight: 600, fontSize: "14px" }}>45 minutes</span>
+            </div>
+        </div>
+        <IntakeForm onSubmitted={handleIntakeSubmitted} />
+    </>
+)}
 
                 {customer && !confirmed && (
-                    <div>
-                        <div style={{
-                            background: "#f8f6fc", borderRadius: "16px", padding: "16px 24px",
-                            marginBottom: "24px", textAlign: "center",
-                        }}>
-                            <h2 style={{ color: "#6B2D8B", margin: 0 }}>Pick a time that works for you</h2>
-                            <p style={{ color: "#5f4370", margin: "6px 0 0" }}>
-                                Choose an available slot below. Payment happens right after.
-                            </p>
-                        </div>
+    <div>
+        <div style={{
+            background: "#f8f6fc", borderRadius: "16px", padding: "16px 24px",
+            marginBottom: "24px", textAlign: "center",
+        }}>
+            <h2 style={{ color: "#463280", margin: 0 }}>Pick a time that works for you</h2>
+            <p style={{ color: "#5f4370", margin: "6px 0 0" }}>
+                Choose an available slot below. Payment happens right after.
+            </p>
+            <div style={{
+                display: "inline-flex", gap: "16px", marginTop: "14px",
+                background: "white", padding: "10px 20px", borderRadius: "30px",
+            }}>
+                <span style={{ color: "#463280", fontWeight: 600, fontSize: "14px" }}>₹500 per session</span>
+                <span style={{ color: "#bda6d8" }}>|</span>
+                <span style={{ color: "#463280", fontWeight: 600, fontSize: "14px" }}>45 minutes</span>
+            </div>
+        </div>
 
                         <AppointmentBooking
                             prefillEmail={customer.email}
@@ -119,7 +141,7 @@ export default function BookingPage() {
                             background: "#f8f6fc", borderRadius: "16px", padding: "16px 24px",
                             marginBottom: "24px", textAlign: "center",
                         }}>
-                            <h2 style={{ color: "#6B2D8B", margin: 0 }}>Time slot reserved!</h2>
+                            <h2 style={{ color: "#463280", margin: 0 }}>Time slot reserved!</h2>
                             <p style={{ color: "#5f4370", margin: "6px 0 0" }}>
                                 {bookingInfo?.service} on{" "}
                                 {bookingInfo?.date && new Date(bookingInfo.date).toLocaleString()}
@@ -143,7 +165,7 @@ export default function BookingPage() {
                     <div style={{
                         background: "white", borderRadius: "16px", padding: "40px", textAlign: "center",
                     }}>
-                        <h2 style={{ color: "#6B2D8B" }}>You're all set!</h2>
+                        <h2 style={{ color: "#463280" }}>You're all set!</h2>
                         <p style={{ color: "#5f4370" }}>
                             Your session is booked and payment confirmed. We look forward to seeing you.
                         </p>
@@ -169,11 +191,11 @@ export default function BookingPage() {
                             width: "18px",
                             height: "18px",
                             border: "3px solid #e4dcf3",
-                            borderTopColor: "#6B2D8B",
+                            borderTopColor: "#463280",
                             borderRadius: "50%",
                             animation: "spin 0.8s linear infinite",
                         }} />
-                        <span style={{ color: "#6B2D8B", fontWeight: 500 }}>
+                        <span style={{ color: "#463280", fontWeight: 500 }}>
                             Confirming your booking, just a few seconds...
                         </span>
                     </div>

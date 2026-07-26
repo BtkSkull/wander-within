@@ -18,7 +18,7 @@
 
 .heading p{
 
-    color:#6B2D8B;
+    color:#463280;
     font-size:14px;
     font-weight:600;
     letter-spacing:2px;
@@ -28,7 +28,7 @@
 
 .heading h2{
 
-    color:#35105C;
+    color:#463280;
     font-size:40px;
     margin-top:15px;
     line-height:1.3;
@@ -65,7 +65,7 @@
 
 .card h3{
 
-    color:#35105C;
+    color:#463280;
     font-size:22px;
     margin-bottom:15px;
 
@@ -82,7 +82,7 @@
 .card button{
 
     margin-top:20px;
-    background:#6B2D8B;
+    background:#463280;
     color:white;
     border:none;
     padding:12px 25px;
@@ -139,63 +139,54 @@
 @media(max-width:768px){
 
 .section{
-
-    padding:45px 18px;
-
+    padding:35px 14px;
 }
 
 .heading{
-
-    margin-bottom:35px;
-
+    margin-bottom:24px;
 }
 
 .heading p{
-
-    font-size:12px;
+    font-size:11px;
     letter-spacing:1px;
-
 }
 
 .heading h2{
-
-    font-size:30px;
-
+    font-size:22px;
 }
 
 .cards{
-
-    grid-template-columns:1fr;
-    gap:20px;
-
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
 .card{
-
-    padding:25px;
-    border-radius:20px;
-
+    padding:16px;
+    border-radius:16px;
 }
 
 .card h3{
-
-    font-size:20px;
-
+    font-size:14px;
+    margin-bottom:8px;
+    line-height:1.3;
+    min-height:36px;
 }
 
 .card p{
-
-    font-size:14px;
-    line-height:1.6;
-
+    font-size:12px;
+    line-height:1.5;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    margin-bottom:10px;
 }
 
 .card button{
-
     width:100%;
-    padding:14px;
-    font-size:15px;
-
+    padding:9px;
+    font-size:12px;
+    border-radius:16px;
 }
 
 }

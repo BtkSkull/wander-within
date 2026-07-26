@@ -25,16 +25,16 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <main style={{ minHeight: '100vh', background: '#eee4ff', padding: '80px 20px' }}>
+    <main style={{ minHeight: '100vh', background: '#eee4ff', padding: 'clamp(40px, 10vw, 80px) clamp(12px, 4vw, 20px)' }}>
       <div style={{
         maxWidth: '400px',
         margin: '0 auto',
-        padding: '40px',
+        padding: 'clamp(24px, 6vw, 40px)',
         background: 'white',
         borderRadius: '16px',
         boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
       }}>
-        <h1 style={{ color: '#6B2D8B', marginBottom: '20px', textAlign: 'center' }}>Admin Login</h1>
+        <h1 style={{ color: '#463280', marginBottom: '20px', textAlign: 'center', fontSize: 'clamp(22px, 5vw, 28px)' }}>Admin Login</h1>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <input
             type="email"
@@ -42,7 +42,7 @@ export default function AdminLoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            style={{ padding: '12px', borderRadius: '8px', border: '1px solid #bda6d8' }}
+            style={{ padding: '12px', borderRadius: '8px', border: '1px solid #bda6d8', fontSize: '16px' }}
           />
           <input
             type="password"
@@ -50,18 +50,19 @@ export default function AdminLoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            style={{ padding: '12px', borderRadius: '8px', border: '1px solid #bda6d8' }}
+            style={{ padding: '12px', borderRadius: '8px', border: '1px solid #bda6d8', fontSize: '16px' }}
           />
           <button
             type="submit"
             style={{
               padding: '12px',
-              background: '#6B2D8B',
+              background: '#463280',
               color: 'white',
               border: 'none',
               borderRadius: '8px',
               cursor: 'pointer',
               fontWeight: 600,
+              fontSize: '15px',
             }}
           >
             Log In

@@ -9,7 +9,7 @@ const statusColors = {
     CANCELLATION_REQUESTED: "#e6a817",
     REFUND_APPROVED: "#2a7",
     REFUND_REJECTED: "#d33",
-    REFUNDED: "#6B2D8B",
+    REFUNDED: "#463280",
     COMPLETED: "#2a7",
     NO_SHOW: "#d33",
     CANCELLED: "#999",
@@ -105,12 +105,12 @@ export default function AdminBookingsPage() {
     ];
 
     return (
-        <main style={{ minHeight: "100vh", background: "#eee4ff", padding: "40px 20px" }}>
+        <main style={{ minHeight: "100vh", background: "#eee4ff", padding: "clamp(20px, 5vw, 40px) clamp(12px, 4vw, 20px)" }}>
             <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
-                    <h1 style={{ color: "#6B2D8B", margin: 0 }}>Bookings</h1>
-                    <Link href="/admin" style={{ color: "#6B2D8B", textDecoration: "underline" }}>← Back to Dashboard</Link>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", flexWrap: "wrap", gap: "10px" }}>
+                    <h1 style={{ color: "#463280", margin: 0, fontSize: "clamp(22px, 5vw, 30px)" }}>Bookings</h1>
+                    <Link href="/admin" style={{ color: "#463280", textDecoration: "underline", fontSize: "14px" }}>← Back to Dashboard</Link>
                 </div>
 
                 <div style={{ display: "flex", gap: "8px", marginBottom: "20px", flexWrap: "wrap" }}>
@@ -121,9 +121,9 @@ export default function AdminBookingsPage() {
                             style={{
                                 padding: "8px 16px", borderRadius: "20px", cursor: "pointer",
                                 border: filter === opt.value ? "none" : "1px solid #bda6d8",
-                                background: filter === opt.value ? "#6B2D8B" : "white",
-                                color: filter === opt.value ? "white" : "#6B2D8B",
-                                fontWeight: 500, fontSize: "14px",
+                                background: filter === opt.value ? "#463280" : "white",
+                                color: filter === opt.value ? "white" : "#463280",
+                                fontWeight: 500, fontSize: "13px",
                             }}
                         >
                             {opt.label}
@@ -140,10 +140,10 @@ export default function AdminBookingsPage() {
                 ) : (
                     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                         {filtered.map((b) => (
-                            <div key={b.id} style={{ background: "white", borderRadius: "16px", padding: "20px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
-                                <div style={{ flex: 1, minWidth: "220px" }}>
-                                    <p style={{ margin: 0, fontWeight: 600, color: "#35105C" }}>{b.name}</p>
-                                    <p style={{ margin: "2px 0", fontSize: "13px", color: "#999" }}>{b.email}</p>
+                            <div key={b.id} style={{ background: "white", borderRadius: "16px", padding: "clamp(14px, 4vw, 20px)", display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "16px" }}>
+                                <div style={{ flex: 1, minWidth: "200px" }}>
+                                    <p style={{ margin: 0, fontWeight: 600, color: "#463280" }}>{b.name}</p>
+                                    <p style={{ margin: "2px 0", fontSize: "13px", color: "#999", wordBreak: "break-word" }}>{b.email}</p>
                                     <p style={{ margin: "2px 0", fontSize: "13px", color: "#5f4370" }}>
                                         {b.service} · {new Date(b.date).toLocaleString()}
                                     </p>
@@ -154,8 +154,8 @@ export default function AdminBookingsPage() {
                                     )}
                                 </div>
 
-                                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
-                                    <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "8px", width: "100%", maxWidth: "260px" }}>
+                                    <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
                                         <span style={{
                                             fontSize: "12px", fontWeight: 600, padding: "4px 10px", borderRadius: "12px",
                                             background: `${statusColors[b.status] || "#999"}22`,
@@ -168,10 +168,10 @@ export default function AdminBookingsPage() {
                                         </span>
                                     </div>
 
-                                    <div style={{ display: "flex", gap: "8px" }}>
+                                    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", width: "100%" }}>
                                         {b.status === "CANCELLATION_REQUESTED" && (
                                             <>
-                                                <button onClick={() => markManualRefund(b.id)} style={btnStyle("#6B2D8B")}>
+                                                <button onClick={() => markManualRefund(b.id)} style={btnStyle("#463280")}>
                                                     Mark as Refunded
                                                 </button>
                                                 <button onClick={() => rejectRefund(b.id)} style={btnStyle("#d33")}>
@@ -181,7 +181,7 @@ export default function AdminBookingsPage() {
                                         )}
                                         {b.status === "CONFIRMED" && (
                                             <>
-                                                <button onClick={() => updateStatus(b.id, "COMPLETED")} style={btnStyle("#6B2D8B")}>
+                                                <button onClick={() => updateStatus(b.id, "COMPLETED")} style={btnStyle("#463280")}>
                                                     Mark Completed
                                                 </button>
                                                 <button onClick={() => updateStatus(b.id, "NO_SHOW")} style={btnStyle("#999")}>

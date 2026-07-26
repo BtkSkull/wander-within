@@ -10,7 +10,7 @@
 .card h2{
 
     text-align:center;
-    color:#4b216b;
+    color:#463280;
     font-family:Georgia,serif;
     font-size:32px;
     margin-bottom:30px;
@@ -33,7 +33,7 @@
 .header{
 
     background:#d9c1ee;
-    color:#6B2D8B;
+    color:#463280;
     font-size:28px;
     font-weight:600;
     padding:20px;
@@ -67,7 +67,7 @@
 .left h4,
 .right h4{
 
-    color:#4b216b;
+    color:#463280;
     margin-bottom:20px;
     font-size:20px;
 
@@ -94,7 +94,7 @@
 .times button{
 
     background:#eadbfa;
-    color:#4b216b;
+    color:#463280;
     border:none;
     padding:10px 15px;
     border-radius:8px;
@@ -105,7 +105,7 @@
 
 .times button:hover{
 
-    background:#6B2D8B;
+    background:#463280;
     color:white;
     transform:translateY(-2px);
 
