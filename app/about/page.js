@@ -6,7 +6,6 @@ import TherapyApproach from "@/components/about/TherapyApproach";
 import WhoWeHelp from "@/components/about/WhoWeHelp";
 import WhyChoose from "@/components/about/WhyChoose";
 import CoreValues from "@/components/about/CoreValues";
-import AboutFAQ from "@/components/about/AboutFAQ";
 import AboutCTA from "@/components/about/AboutCTA";
 
 export default function AboutPage() {
@@ -20,7 +19,6 @@ export default function AboutPage() {
       <WhoWeHelp />
       <WhyChoose />
       <CoreValues />
-      <AboutFAQ />
       <AboutCTA />
     </>
   );

@@ -117,23 +117,40 @@
 }
 
 @media(max-width:768px){
-
 .section{
-
-    padding:60px 20px;
-
+    padding:35px 16px;
 }
-
+.heading{
+    margin-bottom:30px;
+}
+.heading p{
+    font-size:11px;
+}
 .heading h2{
-
-    font-size:32px;
-
+    font-size:24px;
 }
-
 .left h3{
-
-    font-size:28px;
-
+    font-size:20px;
+    margin-bottom:16px;
 }
-
+.left p{
+    font-size:14px;
+    line-height:1.6;
+    margin-bottom:14px;
+}
+.hideOnMobile{
+    display:none;
+}
+.card{
+    padding:20px;
+    border-radius:18px;
+}
+.card h3{
+    font-size:17px;
+    margin-bottom:10px;
+}
+.card p{
+    font-size:13px;
+    line-height:1.5;
+}
 }

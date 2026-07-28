@@ -21,9 +21,8 @@ export default function WhoWeHelp() {
       </div>
 
       <div className={styles.grid}>
-        {people.map((item,index)=>(
+        {people.map((item, index) => (
           <div className={styles.card} key={index}>
-            {/* <div className={styles.icon}>❤</div> */}
             <h3>{item}</h3>
           </div>
         ))}

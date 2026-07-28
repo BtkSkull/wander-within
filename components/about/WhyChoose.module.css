@@ -69,16 +69,47 @@ color:#666;
 
 .section{
 flex-direction:column;
-padding:60px 20px;
-}
-
-.list,
-.right{
-grid-template-columns:1fr;
+padding:30px 14px;
+gap:24px;
 }
 
 .left h2{
-font-size:32px;
+font-size:22px;
+}
+
+.text{
+font-size:13px;
+line-height:1.6;
+margin-bottom:16px;
+}
+
+.list{
+grid-template-columns:repeat(2,1fr);
+gap:8px;
+}
+
+.item{
+padding:10px;
+font-size:12px;
+}
+
+.right{
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+}
+
+.box{
+padding:14px 6px;
+border-radius:14px;
+}
+
+.box h1{
+font-size:20px;
+margin-bottom:2px;
+}
+
+.box p{
+font-size:10px;
 }
 
 }
