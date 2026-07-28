@@ -10,7 +10,7 @@
 .card h2{
 
     text-align:center;
-    color:#4b216b;
+    color:#463280;
     font-family:Georgia,serif;
     font-size:30px;
     margin-bottom:25px;
@@ -29,7 +29,7 @@
 
 .paymentBox h3{
 
-    color:#6B2D8B;
+    color:#463280;
     margin-bottom:20px;
     font-size:22px;
 
@@ -55,14 +55,14 @@
 
 .paymentBox input:focus{
 
-    border-color:#6B2D8B;
+    border-color:#463280;
     box-shadow:0 0 0 3px rgba(107,45,139,.15);
 
 }
 
 .paymentBox button{
 
-    background:#6B2D8B;
+    background:#463280;
     color:white;
 
     border:none;
@@ -82,7 +82,7 @@
 
 .paymentBox button:hover{
 
-    background:#4e1f68;
+    background:#3a2a6b;
     transform:translateY(-2px);
 
 }

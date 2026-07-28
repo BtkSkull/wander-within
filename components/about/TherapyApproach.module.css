@@ -14,7 +14,7 @@
 
 .heading p{
 
-    color:#6B2D8B;
+    color:#463280;
     font-weight:700;
     letter-spacing:2px;
 
@@ -22,7 +22,7 @@
 
 .heading h2{
 
-    color:#35105C;
+    color:#463280;
     font-size:42px;
     margin-top:15px;
 
@@ -67,7 +67,7 @@
 
     border-radius:50%;
 
-    background:#6B2D8B;
+    background:#463280;
     color:white;
 
     display:flex;
@@ -82,7 +82,7 @@
 
 .card h3{
 
-    color:#35105C;
+    color:#463280;
     margin-bottom:15px;
 
 }

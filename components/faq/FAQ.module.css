@@ -21,7 +21,7 @@
 
     font-size:46px;
     font-family:Georgia,serif;
-    color:#4b216b;
+    color:#463280;
     margin-bottom:15px;
 
 }
@@ -124,7 +124,7 @@
 
 .questionTitle span{
 
-    color:#6B2D8B;
+    color:#463280;
     font-size:22px;
     flex-shrink:0;
 
@@ -146,7 +146,7 @@
     max-width:1150px;
     margin:60px auto 0;
 
-    background:#6B2D8B;
+    background:#463280;
 
     border-radius:28px;
 
@@ -179,7 +179,7 @@
 .cta button{
 
     background:white;
-    color:#6B2D8B;
+    color:#463280;
 
     border:none;
 

@@ -6,7 +6,7 @@ export default function LoginPage() {
     return (
         <main style={{ minHeight: "100vh", background: "#eee4ff", display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
             <div style={{ background: "white", borderRadius: "16px", padding: "40px", maxWidth: "400px", width: "100%", textAlign: "center" }}>
-                <h1 style={{ color: "#6B2D8B", marginBottom: "10px" }}>Welcome to Wander Within</h1>
+                <h1 style={{ color: "#463280", marginBottom: "10px" }}>Welcome to Wander Within</h1>
                 <p style={{ color: "#5f4370", marginBottom: "30px" }}>
                     Sign in to book a session and manage your appointments.
                 </p>

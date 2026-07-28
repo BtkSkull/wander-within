@@ -99,7 +99,7 @@ export default function IntakeForm({ onSubmitted }) {
 
                 <h3>Consent &amp; Confidentiality Agreement</h3>
                 <div className={styles.bigBox}>
-                    <p style={{ margin: 0, fontSize: "14px", lineHeight: "1.6", color: "#4b216b" }}>
+                    <p style={{ margin: 0, fontSize: "14px", lineHeight: "1.6", color: "#463280" }}>
                         I understand that all sessions are confidential and protected under
                         applicable privacy laws, with limited exceptions where disclosure is
                         legally required (such as risk of harm to myself or others). I consent
@@ -110,7 +110,7 @@ export default function IntakeForm({ onSubmitted }) {
                 </div>
 
                 <div className={styles.bottom}>
-                    <label style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px", color: "#4b216b" }}>
+                    <label style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px", color: "#463280" }}>
                         <input
                             type="checkbox"
                             name="agreed"
