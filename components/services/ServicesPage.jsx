@@ -3,6 +3,13 @@ import styles from "./ServicesPage.module.css";
 
 const services = [
   {
+    title: "Student Special Therapy",
+    price: "₹500 / Session",
+    description:
+      "Affordable counselling exclusively for students dealing with exam stress, anxiety, career confusion, academic pressure, and emotional well-being. Professional support should always be accessible.",
+    student: true,
+  },
+  {
     title: "Individual Therapy (50-60 min)",
     price: "₹999",
     description:
@@ -32,22 +39,13 @@ const services = [
     description:
       "Evidence-based support to overcome addiction, build healthy coping strategies, improve lifestyle habits, and promote long-term recovery.",
   },
-  {
-    title: "Student Special Therapy",
-    price: "₹500 / Session",
-    description:
-      "Affordable counselling exclusively for students dealing with exam stress, anxiety, career confusion, academic pressure, and emotional well-being. Professional support should always be accessible.",
-    student: true,
-  },
 ];
 
 export default function ServicesPage() {
   return (
     <section className={styles.servicesSection}>
-
       <div className={styles.heading}>
         <h1>Our Services</h1>
-
         <p>
           Compassionate, evidence-based therapy services designed to help you
           heal, grow and reconnect with yourself.
@@ -56,49 +54,39 @@ export default function ServicesPage() {
 
       <div className={styles.grid}>
         {services.map((service, index) => (
-
           <div
             key={index}
             className={`${styles.card} ${
               service.student ? styles.studentCard : ""
             }`}
           >
-
-            <h2>{service.title}</h2>
-
-            <h3 className={styles.price}>
-              {service.price}
-            </h3>
-
-            <p>{service.description}</p>
+            {/* Content body wrapper pushes buttons to bottom */}
+            <div className={styles.cardBody}>
+              {service.student && (
+                <span className={styles.badge}>SPECIAL</span>
+              )}
+              <h2>{service.title}</h2>
+              <h3 className={styles.price}>{service.price}</h3>
+              <p>{service.description}</p>
+            </div>
 
             {service.student ? (
-
               <Link
-                  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
-          target="_blank"
-          rel="noopener noreferrer"
+                href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.contactBtn}
               >
                 Contact Us
               </Link>
-
             ) : (
-
-              <Link
-                href="/booking"
-                className={styles.bookBtn}
-              >
+              <Link href="/booking" className={styles.bookBtn}>
                 Book Session
               </Link>
-
             )}
-
           </div>
-
         ))}
       </div>
-
     </section>
   );
 }

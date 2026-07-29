@@ -6,10 +6,10 @@ import { authOptions } from "@/lib/auth";
 export async function POST(request) {
   try {
     const session = await getServerSession(authOptions);
-    const { name, email, phone } = await request.json();
+    const { name, email, phone, service } = await request.json();
 
-    if (!name || !email) {
-      return NextResponse.json({ error: "name and email required" }, { status: 400 });
+    if (!name || !email || !service) {
+      return NextResponse.json({ error: "name, email, and service required" }, { status: 400 });
     }
 
     const user = session?.user?.email
@@ -21,7 +21,8 @@ export async function POST(request) {
         name,
         email,
         phone,
-        service: "Pending Selection",
+        service,
+        requestedService: service,
         date: new Date(),
         status: "PENDING",
         userId: user?.id || null,

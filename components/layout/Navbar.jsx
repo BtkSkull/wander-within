@@ -57,7 +57,7 @@ export default function Navbar() {
           <button className={styles.bookBtn}>BOOK NOW</button>
         </Link>
 
-        {/* WhatsApp Icon Link */}
+        {/* WhatsApp Button */}
         <a
           href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
           target="_blank"
@@ -68,8 +68,8 @@ export default function Navbar() {
           <FaWhatsapp className={styles.icon} />
         </a>
 
-        {/* Profile dropdown - always visible */}
-        <div ref={profileRef} style={{ position: "relative" }}>
+        {/* Profile dropdown - DESKTOP ONLY */}
+        <div ref={profileRef} className={styles.desktopOnly} style={{ position: "relative" }}>
           <button
             onClick={() => setProfileOpen((prev) => !prev)}
             aria-label="Account menu"
@@ -94,7 +94,7 @@ export default function Navbar() {
                 <>
                   <div style={{ padding: "10px 12px", fontSize: "13px", color: "#999", borderBottom: "1px solid #eee" }}>
                     Signed in as<br />
-                    <strong style={{ color: "#463280" }}>{session.user.name}</strong>
+                    <strong style={{ color: "#463280" }}>{session?.user?.name}</strong>
                   </div>
                   <Link href="/my-sessions" onClick={() => setProfileOpen(false)} style={menuItemStyle}>
                     My Sessions
@@ -133,7 +133,7 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Hamburger - mobile only */}
+        {/* Hamburger - MOBILE ONLY */}
         <button
           className={styles.hamburgerBtn}
           onClick={() => setMobileNavOpen((prev) => !prev)}
@@ -143,15 +143,76 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile dropdown nav links */}
+      {/* Mobile Backdrop */}
       {mobileNavOpen && (
-        <div className={styles.mobileLinks}>
+        <div className={styles.drawerOverlay} onClick={() => setMobileNavOpen(false)} />
+      )}
+
+      {/* Mobile Left Drawer */}
+      <div className={`${styles.mobileDrawer} ${mobileNavOpen ? styles.mobileDrawerOpen : ''}`}>
+        <div className={styles.drawerHeader}>
+          <Image
+            src="/images/logo1.png"
+            alt="Wander Within"
+            width={140}
+            height={46}
+          />
+          <button onClick={() => setMobileNavOpen(false)} className={styles.closeBtn}>
+            <FaTimes size={20} color="#463280" />
+          </button>
+        </div>
+
+        <div className={styles.drawerAccountSection}>
+          {status === "authenticated" ? (
+            <>
+              <div className={styles.drawerUserBadge}>
+                Signed in as<br />
+                <strong style={{ color: "#463280", fontSize: "14px" }}>{session?.user?.name}</strong>
+              </div>
+              <Link href="/my-sessions" onClick={() => setMobileNavOpen(false)} style={menuItemStyle}>
+                My Sessions
+              </Link>
+              <a
+                href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={menuItemStyle}
+              >
+                Contact Us
+              </a>
+              <button
+                onClick={() => { setMobileNavOpen(false); signOut({ callbackUrl: "/" }); }}
+                style={{ ...menuItemStyle, width: "100%", textAlign: "left", background: "none", border: "none", cursor: "pointer", color: "#d33" }}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link href="/login" onClick={() => setMobileNavOpen(false)} style={menuItemStyle}>
+                Login / Signup
+              </Link>
+              <a
+                href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={menuItemStyle}
+              >
+                Contact Us
+              </a>
+            </>
+          )}
+        </div>
+
+        <hr className={styles.drawerDivider} />
+
+        <div className={styles.drawerNavLinks}>
           <Link href="/" onClick={() => setMobileNavOpen(false)}>Home</Link>
           <Link href="/about" onClick={() => setMobileNavOpen(false)}>About</Link>
           <Link href="/services" onClick={() => setMobileNavOpen(false)}>Services</Link>
           <Link href="/faq" onClick={() => setMobileNavOpen(false)}>FAQ</Link>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

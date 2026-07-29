@@ -36,16 +36,28 @@ export default function AdminDashboardPage() {
                     ))}
                 </div>
 
-                <Link
-                    href="/admin/bookings"
-                    style={{
-                        display: "block", background: "white", borderRadius: "16px", padding: "clamp(16px, 4vw, 24px)",
-                        color: "#463280", fontWeight: 600, textDecoration: "none", maxWidth: "300px",
-                        boxShadow: "0 2px 8px rgba(70,50,128,0.08)",
-                    }}
-                >
-                    Manage Bookings & Refunds →
-                </Link>
+                <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+    <Link
+        href="/admin/bookings"
+        style={{
+            display: "block", background: "white", borderRadius: "16px", padding: "clamp(16px, 4vw, 24px)",
+            color: "#463280", fontWeight: 600, textDecoration: "none", maxWidth: "300px", flex: "1", minWidth: "220px",
+            boxShadow: "0 2px 8px rgba(70,50,128,0.08)",
+        }}
+    >
+        Manage Bookings & Refunds →
+    </Link>
+    <Link
+        href="/admin/clients"
+        style={{
+            display: "block", background: "white", borderRadius: "16px", padding: "clamp(16px, 4vw, 24px)",
+            color: "#463280", fontWeight: 600, textDecoration: "none", maxWidth: "300px", flex: "1", minWidth: "220px",
+            boxShadow: "0 2px 8px rgba(70,50,128,0.08)",
+        }}
+    >
+        Client Intake Records →
+    </Link>
+</div>
             </div>
         </main>
     )

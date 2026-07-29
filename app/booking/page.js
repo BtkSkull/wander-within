@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import IntakeForm from "@/components/booking/IntakeForm";
 import AppointmentBooking from "@/components/booking/AppointmentBooking";
 import PaymentGateway from "@/components/booking/PaymentGateway";
+import { getPriceForService } from "@/lib/pricing";
 
 export default function BookingPage() {
     const { data: session, status } = useSession();
@@ -87,45 +88,23 @@ export default function BookingPage() {
 
     return (
         <main style={{ minHeight: "100vh", background: "#eee4ff", padding: "clamp(20px, 5vw, 40px) clamp(12px, 4vw, 20px)" }}>
-    <div style={{ maxWidth: "700px", margin: "0 auto", width: "100%" }}>
+            <div style={{ maxWidth: "800px", margin: "0 auto", width: "100%" }}>
 
                 {!customer && (
-    <>
-        <div style={{
-            display: "flex", justifyContent: "center", gap: "16px", marginBottom: "20px",
-        }}>
-            <div style={{
-                background: "white", padding: "10px 24px", borderRadius: "30px",
-                boxShadow: "0 2px 8px rgba(70,50,128,0.08)", display: "flex", gap: "16px",
-            }}>
-                <span style={{ color: "#463280", fontWeight: 600, fontSize: "14px" }}>₹500 per session</span>
-                <span style={{ color: "#bda6d8" }}>|</span>
-                <span style={{ color: "#463280", fontWeight: 600, fontSize: "14px" }}>45 minutes</span>
-            </div>
-        </div>
-        <IntakeForm onSubmitted={handleIntakeSubmitted} />
-    </>
-)}
+                    <IntakeForm onSubmitted={handleIntakeSubmitted} />
+                )}
 
                 {customer && !confirmed && (
-    <div>
-        <div style={{
-            background: "#f8f6fc", borderRadius: "16px", padding: "16px 24px",
-            marginBottom: "24px", textAlign: "center",
-        }}>
-            <h2 style={{ color: "#463280", margin: 0 }}>Pick a time that works for you</h2>
-            <p style={{ color: "#5f4370", margin: "6px 0 0" }}>
-                Choose an available slot below. Payment happens right after.
-            </p>
-            <div style={{
-                display: "inline-flex", gap: "16px", marginTop: "14px",
-                background: "white", padding: "10px 20px", borderRadius: "30px",
-            }}>
-                <span style={{ color: "#463280", fontWeight: 600, fontSize: "14px" }}>₹500 per session</span>
-                <span style={{ color: "#bda6d8" }}>|</span>
-                <span style={{ color: "#463280", fontWeight: 600, fontSize: "14px" }}>45 minutes</span>
-            </div>
-        </div>
+                    <div>
+                        <div style={{
+                            background: "#f8f6fc", borderRadius: "16px", padding: "16px 24px",
+                            marginBottom: "24px", textAlign: "center",
+                        }}>
+                            <h2 style={{ color: "#463280", margin: 0 }}>Pick a time that works for you</h2>
+                            <p style={{ color: "#5f4370", margin: "6px 0 0" }}>
+                                Choose an available slot below. Payment happens right after.
+                            </p>
+                        </div>
 
                         <AppointmentBooking
                             prefillEmail={customer.email}
@@ -152,7 +131,7 @@ export default function BookingPage() {
 
                         <PaymentGateway
                             bookingId={bookingId}
-                            amount={500}
+                            amount={getPriceForService(customer.service)}
                             customerName={customer.name}
                             customerEmail={customer.email}
                             customerPhone={customer.phone}
@@ -209,5 +188,5 @@ export default function BookingPage() {
 
             </div>
         </main>
-    )
+    );
 }

@@ -32,16 +32,16 @@ export async function POST(request) {
       });
 
       if (pending) {
-        await prisma.booking.update({
-          where: { id: pending.id },
-          data: {
-            service: invitee.event_type?.name || "General Session",
-            date: new Date(invitee.scheduled_event.start_time),
-            status: "CONFIRMED",
-            calendlyEventId: invitee.uri,
-          },
-        });
-      } else {
+  booking = await prisma.booking.update({
+    where: { id: pending.id },
+    data: {
+      service: pending.requestedService || invitee.event_type?.name || "General Session",
+      date: new Date(invitee.scheduled_event.start_time),
+      status: "CONFIRMED",
+      calendlyEventId: invitee.uri,
+    },
+  });
+} else {
         await prisma.booking.create({
           data: {
             name: invitee.name,

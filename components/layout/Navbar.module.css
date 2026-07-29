@@ -13,199 +13,263 @@
 }
 
 /* Logo */
-
-.logo{
-    display:flex;
-    align-items:center;
+.logo {
+    display: flex;
+    align-items: center;
 }
 
-.logo img{
-    width:170px;
-    height:auto;
-    object-fit:contain;
+.logo img {
+    width: 170px;
+    height: auto;
+    object-fit: contain;
 }
 
 /* Links */
-
-.links{
-    display:flex;
-    align-items:center;
-    gap:35px;
+.links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
 }
 
-.links a{
-    text-decoration:none;
-    color:#3b214d;
-    font-size:16px;
-    font-weight:500;
-    transition:.3s;
+.links a {
+    text-decoration: none;
+    color: #3b214d;
+    font-size: 16px;
+    font-weight: 500;
+    transition: .3s;
 }
 
-.links a:hover{
-    color:#463280;
+.links a:hover {
+    color: #463280;
 }
 
-.active{
-    color:#463280 !important;
+.active {
+    color: #463280 !important;
 }
 
 /* Right Side */
-
-.rightSide{
-    display:flex;
-    align-items:center;
-    gap:18px;
+.rightSide {
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
 /* Book Button */
-
-.bookBtn{
-    background:#463280;
-    color:white;
-    border:none;
-    padding:14px 28px;
-    border-radius:30px;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
+.bookBtn {
+    background: #463280;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
 }
 
-.bookBtn:hover{
-    background:#3a2a6b;
+.bookBtn:hover {
+    background: #3a2a6b;
 }
 
 /* WhatsApp */
-
-.whatsapp{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    text-decoration:none;
-    color:#463280;
-    font-weight:600;
+.whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #463280;
+    font-weight: 600;
 }
 
-.icon{
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    background:#463280;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #463280;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* ========================= */
-/* Tablet */
-/* ========================= */
-
-@media(max-width:992px){
-
-.navbar{
-    padding:0 30px;
+.desktopOnly {
+    display: block;
 }
 
-.links{
-    gap:18px;
-}
-
-.links a{
-    font-size:15px;
-}
-
-.bookBtn{
-    padding:12px 22px;
-    font-size:14px;
-}
-
-.whatsapp span:last-child{
-    display:none;
-}
-
-}
-
-/* ========================= */
-/* Mobile */
-/* ========================= */
-
-@media(max-width:768px){
-
-.navbar{
-    height:70px;
-    padding:0 18px;
-}
-
-.logo img{
-    width:130px;
-}
-
-.links{
-    display:none;
-}
-
-.rightSide{
-    gap:10px;
-}
-
-.bookBtn{
-    padding:10px 16px;
-    font-size:13px;
-}
-
-.whatsapp{
-    gap:0;
-}
-
-.whatsapp span:last-child{
-    display:none;
-}
-
-.icon{
-    width:38px;
-    height:38px;
-}
-
-}
 .hamburgerBtn {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 4px;
+    align-items: center;
+    justify-content: center;
 }
 
-.mobileLinks {
+/* Hidden on desktop screens */
+.drawerOverlay,
+.mobileDrawer {
     display: none;
 }
 
-@media (max-width: 900px) {
+/* ========================= */
+/* Tablet */
+/* ========================= */
+@media(max-width:992px) {
+    .navbar {
+        padding: 0 30px;
+    }
+
     .links {
+        gap: 18px;
+    }
+
+    .links a {
+        font-size: 15px;
+    }
+
+    .bookBtn {
+        padding: 12px 22px;
+        font-size: 14px;
+    }
+
+    .whatsapp span:last-child {
+        display: none;
+    }
+}
+
+/* ========================= */
+/* Mobile (max-width: 900px) */
+/* ========================= */
+@media (max-width: 900px) {
+    .navbar {
+        height: 70px;
+        padding: 0 18px;
+    }
+
+    .logo img {
+        width: 130px;
+    }
+
+    .links {
+        display: none;
+    }
+
+    .desktopOnly {
+        display: none !important;
+    }
+
+    .rightSide {
+        gap: 10px;
+    }
+
+    .bookBtn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .whatsapp {
+        gap: 0;
+    }
+
+    .whatsapp span:last-child {
         display: none;
     }
 
     .hamburgerBtn {
         display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
-    .mobileLinks {
+    /* Mobile Drawer & Overlay Styles */
+    .drawerOverlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 998;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .mobileDrawer {
         display: flex;
         flex-direction: column;
-        width: 100%;
-        background: white;
-        padding: 12px 20px;
-        gap: 4px;
-        border-top: 1px solid #eee;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        background: #ffffff;
+        z-index: 999;
+        box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        padding: 20px 16px;
+        overflow-y: auto;
     }
 
-    .mobileLinks a {
-        padding: 10px 0;
+    .mobileDrawerOpen {
+        transform: translateX(0);
+    }
+
+    .drawerHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #f0eaff;
+    }
+
+    .closeBtn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+    }
+
+    .drawerAccountSection {
+        margin-top: 12px;
+    }
+
+    .drawerUserBadge {
+        padding: 10px 16px;
+        font-size: 13px;
+        color: #888;
+        background: #fbf9ff;
+        border-radius: 8px;
+        margin-bottom: 8px;
+    }
+
+    .drawerDivider {
+        border: none;
+        border-top: 1px solid #eee;
+        margin: 16px 0;
+    }
+
+    .drawerNavLinks {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .drawerNavLinks a {
+        display: block;
+        padding: 12px 16px;
+        border-radius: 8px;
         color: #463280;
         text-decoration: none;
-        font-weight: 500;
-        border-bottom: 1px solid #f4eaff;
+        font-size: 16px;
+        font-weight: 600;
     }
+
+    .drawerNavLinks a:hover {
+        background-color: #f4eaff;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

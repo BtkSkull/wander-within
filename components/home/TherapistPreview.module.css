@@ -1,7 +1,7 @@
 .section{
 
     padding:80px 60px;
-    background:#f4efff;
+    background: linear-gradient(180deg, #eee4ff 0%, #f4efff 15%, #f4efff 100%);
 
 }
 
