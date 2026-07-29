@@ -57,13 +57,9 @@ return (
 
 <div className={styles.heading}>
 
-<p>
+<h1>
 OUR SERVICES
-</p>
-
-<h2>
-Support Designed For Your Mental Wellness
-</h2>
+</h1>
 
 </div>
 
@@ -90,10 +86,6 @@ key={index}
 {service.description}
 </p>
 
-
-<button>
-Learn More
-</button>
 
 
 </div>

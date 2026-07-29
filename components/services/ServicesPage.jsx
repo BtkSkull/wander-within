@@ -3,40 +3,41 @@ import styles from "./ServicesPage.module.css";
 
 const services = [
   {
-    title: "Individual Therapy & Emotional Well-being",
+    title: "Individual Therapy (50-60 min)",
+    price: "₹999",
     description:
-      "Support for anxiety, stress, burnout, emotional regulation, self-esteem and personal growth.",
-    // icon: "🧠",
+      "Personalized one-to-one therapy sessions to help you manage anxiety, stress, burnout, emotional regulation, self-esteem, and personal growth in a safe, confidential space.",
   },
   {
     title: "Child, Adolescent & Parent Support",
+    price: "₹1,199",
     description:
-      "Counselling for children, teenagers and parents dealing with behavioural, emotional and academic concerns.",
-    // icon: "👨‍👩‍👧",
+      "Professional counselling for children, teenagers, and parents to address emotional, behavioural, academic, and family-related challenges.",
   },
   {
-    title: "Relationship & Family Counselling",
+    title: "Relationship & Family Counseling",
+    price: "₹1,799",
     description:
-      "Improve communication, resolve conflicts and strengthen healthy relationships.",
-    // icon: "❤️",
+      "Strengthen relationships through healthy communication, conflict resolution, trust-building, and emotional connection with expert guidance.",
   },
   {
     title: "Group Programs & Mental Health Workshops",
+    price: "₹499 / Person",
     description:
-      "Interactive group sessions, school, college and corporate wellness workshops.",
-    // icon: "👥",
+      "Interactive wellness workshops for schools, colleges, workplaces, and community groups focusing on mental health awareness and emotional well-being.",
   },
   {
     title: "Addiction Recovery & Lifestyle Wellness",
+    price: "₹1,199",
     description:
-      "Helping individuals overcome addiction while building healthy coping skills and resilience.",
-    // icon: "🌿",
+      "Evidence-based support to overcome addiction, build healthy coping strategies, improve lifestyle habits, and promote long-term recovery.",
   },
   {
-    title: "Mindfulness & Self Discovery",
+    title: "Student Special Therapy",
+    price: "₹500 / Session",
     description:
-      "Learn mindfulness techniques, emotional awareness and develop inner peace.",
-    // icon: "🪷",
+      "Affordable counselling exclusively for students dealing with exam stress, anxiety, career confusion, academic pressure, and emotional well-being. Professional support should always be accessible.",
+    student: true,
   },
 ];
 
@@ -54,30 +55,48 @@ export default function ServicesPage() {
       </div>
 
       <div className={styles.grid}>
-
         {services.map((service, index) => (
 
-          <div className={styles.card} key={index}>
-
-            <div className={styles.icon}>
-              {service.icon}
-            </div>
+          <div
+            key={index}
+            className={`${styles.card} ${
+              service.student ? styles.studentCard : ""
+            }`}
+          >
 
             <h2>{service.title}</h2>
 
+            <h3 className={styles.price}>
+              {service.price}
+            </h3>
+
             <p>{service.description}</p>
 
-            <Link
-              href="/booking"
-              className={styles.bookBtn}
-            >
-              Book Session
-            </Link>
+            {service.student ? (
+
+              <Link
+                  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+          target="_blank"
+          rel="noopener noreferrer"
+                className={styles.contactBtn}
+              >
+                Contact Us
+              </Link>
+
+            ) : (
+
+              <Link
+                href="/booking"
+                className={styles.bookBtn}
+              >
+                Book Session
+              </Link>
+
+            )}
 
           </div>
 
         ))}
-
       </div>
 
     </section>

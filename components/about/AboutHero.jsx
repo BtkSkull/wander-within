@@ -37,7 +37,9 @@ export default function AboutHero() {
             </button>
           </Link>
 
-          <Link href="/contact">
+          <Link   href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+          target="_blank"
+          rel="noopener noreferrer">
             <button className={styles.secondary}>
               Contact Us
             </button>
