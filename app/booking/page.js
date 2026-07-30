@@ -94,7 +94,37 @@ export default function BookingPage() {
                     <IntakeForm onSubmitted={handleIntakeSubmitted} />
                 )}
 
-                {customer && !confirmed && (
+                {customer && !confirmed && customer.service === "Group Programs & Mental Health Workshops" && (
+                    <div style={{ background: "white", borderRadius: "16px", padding: "40px", textAlign: "center" }}>
+                        <h2 style={{ color: "#463280", marginBottom: "12px" }}>Group Sessions Booked Manually</h2>
+                        <p style={{ color: "#5f4370", marginBottom: "24px" }}>
+                            Our group programs run on a weekly schedule and are currently booked directly with our team.
+                            Please contact us on WhatsApp to check availability and reserve your spot.
+                        </p>
+                        
+                        <a
+                            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                display: "inline-block", background: "#463280", color: "white",
+                                padding: "14px 32px", borderRadius: "30px", textDecoration: "none", fontWeight: 600,
+                            }}
+                        >
+                            Contact Us on WhatsApp
+                        </a>
+                        <div style={{ marginTop: "20px" }}>
+                            <button
+                                onClick={() => setCustomer(null)}
+                                style={{ background: "none", border: "none", color: "#999", textDecoration: "underline", cursor: "pointer" }}
+                            >
+                                ← Choose a different session type
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {customer && !confirmed && customer.service !== "Group Programs & Mental Health Workshops" && (
                     <div>
                         <div style={{
                             background: "#f8f6fc", borderRadius: "16px", padding: "16px 24px",

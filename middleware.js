@@ -6,9 +6,9 @@ export default withAuth(
     const { pathname } = req.nextUrl;
     const token = req.nextauth.token;
 
-    if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
-      if (token?.role !== "ADMIN" && token?.role !== "SUPER_ADMIN") {
-        return NextResponse.redirect(new URL("/admin/login", req.url));
+    if (pathname.startsWith("/admin")) {
+      if (!token?.isAdmin) {
+        return NextResponse.rewrite(new URL("/not-found", req.url));
       }
     }
 
@@ -16,7 +16,7 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => !!token,
+      authorized: () => true,
     },
   }
 );

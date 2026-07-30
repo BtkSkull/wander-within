@@ -28,46 +28,56 @@ export default function PaymentGateway({ bookingId, amount = 500, customerName, 
             }
 
             const options = {
-                key: data.keyId,
-                amount: data.amount,
-                currency: data.currency,
-                order_id: data.orderId,
-                name: "Wander Within",
-                description: "Therapy Session Payment",
-                prefill: {
-                    name: customerName || "",
-                    email: customerEmail || "",
-                    contact: customerPhone || "",
-                },
-                method: {
- 		   upi: true,
- 		   card: true,
- 		   netbanking: false,
-		   wallet: false,
- 		   emi: false,
-  		   paylater: false,
-		},
-                theme: { color: "#463280" },
-                handler: async function (response) {
-                    const verifyRes = await fetch("/api/payment/verify", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            razorpay_order_id: response.razorpay_order_id,
-                            razorpay_payment_id: response.razorpay_payment_id,
-                            razorpay_signature: response.razorpay_signature,
-                            bookingId,
-                        }),
-                    });
-                    const verifyData = await verifyRes.json();
+    key: data.keyId,
+    amount: data.amount,
+    currency: data.currency,
+    order_id: data.orderId,
+    name: "Wander Within",
+    description: "Therapy Session Payment",
+    prefill: {
+        name: customerName || "",
+        email: customerEmail || "",
+        contact: customerPhone || "",
+    },
+    method: {
+        upi: true,
+        card: true,
+        netbanking: false,
+        wallet: false,
+        emi: false,
+        paylater: false,
+    },
+    timeout: 300,
+    modal: {
+        ondismiss: async function () {
+            await fetch("/api/booking/cancel-pending", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ bookingId }),
+            });
+        },
+    },
+    theme: { color: "#463280" },
+    handler: async function (response) {
+        const verifyRes = await fetch("/api/payment/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                bookingId,
+            }),
+        });
+        const verifyData = await verifyRes.json();
 
-                    if (verifyData.success) {
-                        if (onSuccess) onSuccess();
-                    } else {
-                        alert("Payment verification failed. Please contact support.");
-                    }
-                },
-            };
+        if (verifyData.success) {
+            if (onSuccess) onSuccess();
+        } else {
+            alert("Payment verification failed. Please contact support.");
+        }
+    },
+};
 
             const rzp = new window.Razorpay(options);
             rzp.open();

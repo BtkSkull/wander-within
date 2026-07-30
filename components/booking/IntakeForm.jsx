@@ -12,7 +12,7 @@ export default function IntakeForm({ onSubmitted }) {
         firstName: session?.user?.name?.split(" ")[0] || "",
         lastName: session?.user?.name?.split(" ").slice(1).join(" ") || "",
         preferredName: "",
-        dateOfBirth: "",
+        age: "",
         gender: "",
         genderOther: "",
         email: session?.user?.email || "",
@@ -59,7 +59,7 @@ export default function IntakeForm({ onSubmitted }) {
                     preferredName: form.preferredName,
                     email: form.email,
                     phone: form.phone,
-                    dateOfBirth: form.dateOfBirth || undefined,
+                    age: form.age ? parseInt(form.age, 10) : undefined,
                     gender: form.gender,
                     genderOther: form.genderOther,
                     occupation: form.occupation,
@@ -67,7 +67,7 @@ export default function IntakeForm({ onSubmitted }) {
                     emergencyContact: form.emergencyContact,
                     emergencyContactRelationship: form.emergencyContactRelationship,
                     emergencyContactPhone: form.emergencyContactPhone,
-		    mode: form.mode,
+                    mode: form.mode,
                     reasonForVisit: form.reason,
                 }),
             });
@@ -109,7 +109,7 @@ export default function IntakeForm({ onSubmitted }) {
                 </div>
                 <div className={styles.row}>
                     <input name="preferredName" placeholder="Preferred Name (optional)" value={form.preferredName} onChange={handleChange} />
-                    <input type="date" name="dateOfBirth" placeholder="Date of Birth" value={form.dateOfBirth} onChange={handleChange} />
+                    <input type="number" name="age" placeholder="Age" min="1" max="120" value={form.age} onChange={handleChange} />
                 </div>
 
                 <div style={{ margin: "10px 0" }}>
@@ -158,55 +158,55 @@ export default function IntakeForm({ onSubmitted }) {
                 </div>
 
                 <h3>Session Type</h3>
-<select
-    name="service"
-    value={form.service}
-    onChange={handleChange}
-    required
-    style={{ width: "100%", padding: "14px", borderRadius: "10px", border: "1px solid #bda6d8", background: "#f4edff", fontSize: "15px" }}
->
-    <option value="">Select a session type</option>
-    {SERVICES.map((s) => (
-        <option key={s.value} value={s.value}>
-            {s.label} — ₹{s.price}
-        </option>
-    ))}
-</select>
-<p style={{ fontSize: "12px", color: "#7a6094", marginTop: "6px" }}>
-    Are you a student looking for discounted pricing? Please contact us directly on WhatsApp.
-</p>
+                <select
+                    name="service"
+                    value={form.service}
+                    onChange={handleChange}
+                    required
+                    style={{ width: "100%", padding: "14px", borderRadius: "10px", border: "1px solid #bda6d8", background: "#f4edff", fontSize: "15px" }}
+                >
+                    <option value="">Select a session type</option>
+                    {SERVICES.map((s) => (
+                        <option key={s.value} value={s.value}>
+                            {s.label} — ₹{s.price}
+                        </option>
+                    ))}
+                </select>
+                <p style={{ fontSize: "12px", color: "#7a6094", marginTop: "6px" }}>
+                    Are you a student looking for discounted pricing? Please contact us directly on WhatsApp.
+                </p>
 
-<h3>Session Mode</h3>
-<div style={{ display: "flex", gap: "18px", fontSize: "14px", marginBottom: "6px" }}>
-    <label style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-        <input type="radio" name="mode" value="Online" checked={form.mode === "Online"} onChange={handleChange} />
-        Online
-    </label>
-    <label style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-        <input type="radio" name="mode" value="Offline" checked={form.mode === "Offline"} onChange={handleChange} />
-        In-Person
-    </label>
-</div>
-{form.mode === "Online" && (
-    <p style={{ fontSize: "12px", color: "#7a6094", marginBottom: "10px" }}>
-        You'll receive your online meeting link via WhatsApp or a call to your provided number before the session.
-    </p>
-)}
-{form.mode === "Offline" && (
-    <p style={{ fontSize: "12px", color: "#7a6094", marginBottom: "10px" }}>
-        For in-person sessions, please contact us on WhatsApp to confirm location details.
-    </p>
-)}
+                <h3>Session Mode</h3>
+                <div style={{ display: "flex", gap: "18px", fontSize: "14px", marginBottom: "6px" }}>
+                    <label style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                        <input type="radio" name="mode" value="Online" checked={form.mode === "Online"} onChange={handleChange} />
+                        Online
+                    </label>
+                    <label style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                        <input type="radio" name="mode" value="Offline" checked={form.mode === "Offline"} onChange={handleChange} />
+                        In-Person
+                    </label>
+                </div>
+                {form.mode === "Online" && (
+                    <p style={{ fontSize: "12px", color: "#7a6094", marginBottom: "10px" }}>
+                        You'll receive your online meeting link via WhatsApp or a call to your provided number before the session.
+                    </p>
+                )}
+                {form.mode === "Offline" && (
+                    <p style={{ fontSize: "12px", color: "#7a6094", marginBottom: "10px" }}>
+                        For in-person sessions, please contact us on WhatsApp to confirm location details.
+                    </p>
+                )}
 
-<h3>Please specify your concerns in brief</h3>
-<textarea
-    className={styles.textarea}
-    name="reason"
-    placeholder="e.g., Struggling with anxiety, feeling overwhelmed at work, or going through a life transition..."
-    value={form.reason}
-    onChange={handleChange}
-    required
-/>
+                <h3>Please specify your concerns in brief</h3>
+                <textarea
+                    className={styles.textarea}
+                    name="reason"
+                    placeholder="e.g., Struggling with anxiety, feeling overwhelmed at work, or going through a life transition..."
+                    value={form.reason}
+                    onChange={handleChange}
+                    required
+                />
 
                 <h3>Consent &amp; Confidentiality Agreement</h3>
                 <div className={styles.bigBox}>
@@ -241,5 +241,5 @@ export default function IntakeForm({ onSubmitted }) {
                 {status === "error" && <p style={{ color: "red", marginTop: "12px" }}>Something went wrong. Please try again.</p>}
             </form>
         </div>
-    )
+    );
 }

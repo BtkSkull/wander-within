@@ -36,12 +36,13 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <Link href="/" className={styles.logo}>
         <Image
-          src="/images/logo1.png"
-          alt="Wander Within"
-          width={180}
-          height={60}
-          priority
-        />
+  src="/images/logo1.png"
+  alt="Wander Within"
+  width={180}
+  height={60}
+  priority
+  loading="eager"
+/>
       </Link>
 
       {/* Desktop links */}

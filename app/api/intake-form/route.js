@@ -23,11 +23,8 @@ export async function POST(request) {
     }
 
     const saved = await prisma.intakeForm.create({
-      data: {
-        ...data,
-        dateOfBirth: data.dateOfBirth ? new Date(data.dateOfBirth) : null,
-      },
-    });
+  data,
+});
 
     return NextResponse.json({ success: true, id: saved.id });
   } catch (error) {

@@ -51,7 +51,7 @@ export default function AdminClientsPage() {
                                 {expanded === intake.id && (
                                     <div style={{ marginTop: "16px", paddingTop: "16px", borderTop: "1px solid #eee", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "12px", fontSize: "13px" }}>
                                         <Field label="Preferred Name" value={intake.preferredName} />
-                                        <Field label="Date of Birth" value={intake.dateOfBirth ? new Date(intake.dateOfBirth).toLocaleDateString() : null} />
+                                        <Field label="Age" value={intake.age} />
                                         <Field label="Gender" value={intake.gender === "Other" ? intake.genderOther : intake.gender} />
                                         <Field label="Occupation" value={intake.occupation} />
                                         <Field label="City / Country" value={intake.cityCountry} />

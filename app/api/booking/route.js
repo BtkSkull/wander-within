@@ -5,9 +5,9 @@ import { authOptions } from "@/lib/auth";
 
 export async function GET() {
   const session = await getServerSession(authOptions);
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+if (!session?.user?.isAdmin) {
+  return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+}
 
   const bookings = await prisma.booking.findMany({
     orderBy: { date: "desc" },

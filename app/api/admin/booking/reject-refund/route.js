@@ -6,7 +6,7 @@ import { sendNotificationEmail } from "@/lib/email";
 
 export async function POST(request) {
   const session = await getServerSession(authOptions);
-  if (!session || !["ADMIN", "SUPER_ADMIN"].includes(session.user.role)) {
+  if (!session?.user?.isAdmin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
