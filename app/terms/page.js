@@ -8,7 +8,7 @@ export default function TermsPage() {
                 <p>Welcome to Wander Within. By accessing or using our website and booking services, you agree to be bound by the following Terms & Conditions. Please read them carefully.</p>
 
                 <h2 style={{ color: "#463280", marginTop: "30px", fontSize: "clamp(18px, 4vw, 22px)" }}>1. Services Provided</h2>
-                <p>Wander Within provides mental health therapy and counseling services, offered either online or in person, as booked through our website. Sessions are 45 minutes in duration and priced at ₹500 per session unless otherwise stated.</p>
+                <p>Wander Within provides mental health therapy and counseling services, offered either online or in person, as booked through our website. Sessions are (45-60) minutes in duration and priced as stated.</p>
 
                 <h2 style={{ color: "#463280", marginTop: "30px", fontSize: "clamp(18px, 4vw, 22px)" }}>2. Not a Substitute for Emergency Care</h2>
                 <p>Our services are not intended for use in a mental health emergency. If you are experiencing a crisis or having thoughts of harming yourself or others, please contact emergency services or a crisis helpline immediately.</p>
@@ -41,7 +41,7 @@ export default function TermsPage() {
 
                 <h2 style={{ color: "#463280", marginTop: "30px", fontSize: "clamp(18px, 4vw, 22px)" }}>10. Contact Us</h2>
                 <p>For any questions regarding these Terms, please contact us at:</p>
-                <p>Email: bloxfruiz000@gmail.com<br />Phone: +91 9311639804</p>
+                <p>Email: bloxfruiz000@gmail.com<br />Phone: +91 9779641121</p>
             </div>
         </main>
     )

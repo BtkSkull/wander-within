@@ -166,16 +166,25 @@
     margin:0 auto 10px;
 }
 .card h3{
-    font-size:13px;
+    font-size:18px;
     margin-bottom:6px;
     line-height:1.2;
 }
 .card p{
     font-size:11px;
     line-height:1.4;
-    display:-webkit-box;
-    -webkit-line-clamp:3;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
+}
+@media (hover: none){
+
+.card:hover{
+    transform:none;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.card button:hover{
+    transform:none;
+    background:#6B2D8B;
+}
+
 }
 }

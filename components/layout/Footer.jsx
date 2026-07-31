@@ -57,7 +57,7 @@ export default function Footer() {
           <h3>Contact</h3>
 
           <p>📍 New Delhi, India</p>
-          <p>📞 +91 9311639804</p>
+          <p>📞 +91 9779641121</p>
           <p>✉ bloxfruiz000@gmail.com</p>
 
           <div className={styles.social}>
@@ -70,17 +70,10 @@ export default function Footer() {
               <FaWhatsapp />
             </a>
 
-            <a href="#">
+            <a href="https://www.instagram.com/wanderwithinbyav?igsh=NjVqa3pweWd1NHp0">
               <FaInstagram />
             </a>
 
-            <a href="#">
-              <FaFacebookF />
-            </a>
-
-            <a href="#">
-              <FaLinkedinIn />
-            </a>
 
           </div>
 

@@ -178,12 +178,25 @@
 
 .card h3{
     font-size:11px;
-    line-height:1.2;
+    line-height:1;
     margin-bottom:0;
 }
 
 .desc{
     display:none;
+}
+.card:hover{
+    transform:none;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    background:white;
+}
+
+.card:hover .icon{
+    transform:none;
+}
+
+.card:hover h3{
+    color:inherit;
 }
 
 }
