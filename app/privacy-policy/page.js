@@ -66,7 +66,7 @@ export default function PrivacyPolicyPage() {
 
                 <h2 style={{ color: "#463280", marginTop: "30px", fontSize: "clamp(18px, 4vw, 22px)" }}>9. Contact Us</h2>
                 <p>If you have any questions about this Privacy Policy or how your data is handled, please contact us at:</p>
-                <p>Email: bloxfruiz000@gmail.com<br />Phone: +91 9311639804</p>
+                <p>Email: bloxfruiz000@gmail.com<br />Phone: +91 9779641121</p>
             </div>
         </main>
     )

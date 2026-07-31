@@ -112,7 +112,7 @@
     }
 
     .card h3 {
-        font-size: 13px;
+        font-size: 17px;
         margin-bottom: 6px;
         line-height: 1.2;
     }
@@ -120,9 +120,21 @@
     .card p {
         font-size: 11px;
         line-height: 1.4;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
         overflow: hidden;
+        inline-size: auto;
+    }
+        .card:hover{
+        transform:none !important;
+        box-shadow:0 8px 25px rgba(0,0,0,.08) !important;
+        background:white !important;
+    }
+
+    .card:hover .icon{
+        transform:none !important;
+    }
+
+    .card:hover h3,
+    .card:hover p{
+        color:inherit !important;
     }
 }

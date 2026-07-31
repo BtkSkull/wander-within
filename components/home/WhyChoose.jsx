@@ -2,7 +2,7 @@ import styles from "./WhyChoose.module.css";
 
 const highlights = [
   {
-    title: "Safe & Confidential Space",
+    title: "Confidential Space",
     description:
       "A judgment-free environment where you can openly express your thoughts and emotions."
   },
