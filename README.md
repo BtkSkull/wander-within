@@ -113,68 +113,6 @@ wander-within/
 └── hooks/
 ```
 
----
-
-#  Getting Started
-
-## Clone the repository
-
-```bash
-git clone <repository-url>
-cd wander-within
-```
-
-## Install dependencies
-
-```bash
-npm install
-```
-
-## Configure environment variables
-
-Create a `.env` file in the project root.
-
-```env
-DATABASE_URL=
-
-NEXTAUTH_SECRET=
-
-NEXTAUTH_URL=
-
-RAZORPAY_KEY_ID=
-
-RAZORPAY_KEY_SECRET=
-
-RESEND_API_KEY=
-
-NEXT_PUBLIC_CALENDLY_URL=
-```
-
-## Generate Prisma Client
-
-```bash
-npx prisma generate
-```
-
-## Run database migrations
-
-```bash
-npx prisma migrate dev
-```
-
-## Start the development server
-
-```bash
-npm run dev
-```
-
-Open:
-
-```
-http://localhost:3000
-```
-
----
 
 #  Main Modules
 
@@ -227,6 +165,6 @@ This project is developed for a client and is intended for production use. Unaut
 
 ##  Developer
 
-**Mayank Sharma**   **Ketan Arora**
+**Mayank Sharma**  and **Ketan Arora**
 
 Built using modern web technologies with a focus on accessibility, performance, scalability, and user experience.
