@@ -1,9 +1,16 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { sendNotificationEmail } from "@/lib/email";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export async function POST(request) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { bookingId, reason } = await request.json();
 
     if (!bookingId) {
@@ -17,6 +24,10 @@ export async function POST(request) {
 
     if (!booking) {
       return NextResponse.json({ error: "Booking not found" }, { status: 404 });
+    }
+
+    if (booking.email !== session.user.email) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
     }
 
     if (!["CONFIRMED"].includes(booking.status)) {
