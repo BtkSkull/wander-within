@@ -35,13 +35,36 @@ export default function IntakeForm({ onSubmitted }) {
 
     // Render Cloudflare Turnstile
     useEffect(() => {
-        if (window.turnstile) {
-            window.turnstile.render("#turnstile-widget", {
-                sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
-                callback: (token) => setTurnstileToken(token),
-            });
+    let widgetId = null;
+
+    const renderWidget = () => {
+        const container = document.getElementById("turnstile-widget");
+        if (!window.turnstile || !container || container.hasChildNodes()) return;
+
+        widgetId = window.turnstile.render("#turnstile-widget", {
+            sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+            callback: (token) => setTurnstileToken(token),
+        });
+    };
+
+    if (window.turnstile) {
+        renderWidget();
+    } else {
+        const interval = setInterval(() => {
+            if (window.turnstile) {
+                clearInterval(interval);
+                renderWidget();
+            }
+        }, 200);
+        return () => clearInterval(interval);
+    }
+
+    return () => {
+        if (widgetId && window.turnstile) {
+            window.turnstile.remove(widgetId);
         }
-    }, []);
+    };
+}, []);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
