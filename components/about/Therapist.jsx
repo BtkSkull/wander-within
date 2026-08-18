@@ -10,11 +10,12 @@ export default function Therapist() {
         <div className={styles.imageBox}>
 
           <Image
-            src="/images/therapist.jpeg"
-            alt="Therapist"
-            fill
-            className={styles.image}
-          />
+  src="/images/therapist.jpeg"
+  alt="Therapist"
+  fill
+  sizes="(max-width: 768px) 100vw, 400px"
+  className={styles.image}
+/>
 
         </div>
 
